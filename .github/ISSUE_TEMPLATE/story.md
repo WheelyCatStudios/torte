@@ -1,8 +1,8 @@
 ---
 name: Story
 about: 'For tangible user-oriented features '
-title: ''
-labels: ''
+title: 'Story : '
+labels: Story
 assignees: ''
 
 ---
@@ -15,8 +15,8 @@ assignees: ''
  
 ## Stories:
 - [ ] As an (entity),
-*** I want to (task)
-*** So that (goal).
+       I want to (task)
+       So that (goal).
  
  
 ## Acceptance criteria
