@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.InputSystem;
 
 public class CameraBehaviour : MonoBehaviour
 {
+    public InputMaster controls;
+
     private Vector3 targetPosition;
     private Vector3 dampVelocity = Vector3.zero;
     private Transform target;
@@ -25,38 +28,40 @@ public class CameraBehaviour : MonoBehaviour
     [Range(0,35)]
     public float smoothTime;
 
-    [Header("Changin Focus")]
+    [Header("Changing Focus")]
     public Transform secondaryTarget;
 
     [Tooltip("Time (in Seconds) in which the camera will be focusing on secondary target")]
     public float timeUntilReturn;
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+        controls.Player.Interact.performed += ctx => TriggerFocusChange();
+    }
 
     private void Start()
     {
         target = primaryTarget;
 
         mainCamera = GetComponent<Camera>();
-        cameraSize = new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
 
+        cameraSize = new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
         tilemapBoundaries = tilemap.cellBounds;
     }
 
     public bool FocusingPrimary => target == primaryTarget;
     public bool ReturnTimerIsActive => timeUntilReturn > 0;
 
-    private void Update()
+    private void TriggerFocusChange()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if(!FocusingPrimary && !ReturnTimerIsActive)
         {
-            if(!FocusingPrimary && !ReturnTimerIsActive)
-            {
-                ReturnFocusToPrimary();
-            }
-            else if (FocusingPrimary)
-            {
-                StartCoroutine(ChangeTargetFocus(secondaryTarget, timeUntilReturn));
-            }
-            
+            ReturnFocusToPrimary();
+        }
+        else if (FocusingPrimary)
+        {
+            StartCoroutine(ChangeTargetFocus(secondaryTarget, timeUntilReturn));
         }
     }
 
@@ -91,5 +96,15 @@ public class CameraBehaviour : MonoBehaviour
         targetPosition.y = Mathf.Clamp(targetPosition.y, tilemapBoundaries.yMin + cameraSize.y, tilemapBoundaries.yMax - cameraSize.y);
         
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref dampVelocity, smoothTime * Time.deltaTime);
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 }
