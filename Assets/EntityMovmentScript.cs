@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class EntityMovmentScript : MonoBehaviour
 {
     public InputMaster controls;
-    public Rigidbody2D rb;
+    public float speed = 1f;
+    private Rigidbody2D rb;
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -28,6 +29,6 @@ public class EntityMovmentScript : MonoBehaviour
     }
     void Move(Vector2 direction)
     {
-        Debug.Log("Move " + direction);
+        rb.MovePosition(rb.position + direction * speed);
     }
 }
