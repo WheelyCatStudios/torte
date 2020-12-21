@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class EntityMovmentScript : MonoBehaviour
 {
-    public MasterInput controls = new MasterInput();
+    public MasterInput controls;
 
 
     /// <summary>
@@ -13,7 +13,8 @@ public class EntityMovmentScript : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        controls.Player.Movment.performed += ctx => Move(ctx.ReadValue<Vector2>());
+        controls = new MasterInput();
+        controls.Player.Movment.performed += ctx => Move();
     }
     
     private void OnEnable() {
@@ -22,8 +23,8 @@ public class EntityMovmentScript : MonoBehaviour
     private void OnDisable() {
         controls.Disable();
     }
-    void Move(Vector2 direction)
+    void Move()
     {
-        Debug.Log("Move " + direction);
+        Debug.Log("Move ");
     }
 }
