@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 public class EntityMovmentScript : MonoBehaviour
 {
     public InputMaster controls;
-
-
+    public Rigidbody2D rb;
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -15,6 +14,10 @@ public class EntityMovmentScript : MonoBehaviour
     {
         controls = new InputMaster();
         controls.Player.Movment.performed += ctx => Move(ctx.ReadValue<Vector2>());
+    }
+    
+    void Start() {
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
     
     private void OnEnable() {
