@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/MasterInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/InputMaster.inputactions'
 
 using System;
 using System.Collections;
@@ -6,22 +6,22 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @MasterInput : IInputActionCollection, IDisposable
+public class @InputMaster : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @MasterInput()
+    public @InputMaster()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""MasterInput"",
+    ""name"": ""InputMaster"",
     ""maps"": [
         {
             ""name"": ""Player"",
-            ""id"": ""90c7e184-a44f-406f-a202-6cd975819d36"",
+            ""id"": ""ce204fc6-56fe-4dd5-af92-b4d4a0156e8a"",
             ""actions"": [
                 {
                     ""name"": ""Movment"",
                     ""type"": ""Button"",
-                    ""id"": ""3d4924ee-d41b-470a-b710-870b7ad18715"",
+                    ""id"": ""3c5ee30d-782c-4985-a70b-97ec69033ed1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -29,9 +29,9 @@ public class @MasterInput : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Vertical"",
-                    ""id"": ""3b23f705-0a9c-48bc-9e3b-36968e3f8083"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""7b285f3b-5a66-4764-a9ae-43a5b27ea842"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -40,56 +40,45 @@ public class @MasterInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Negative"",
-                    ""id"": ""1a048453-79c6-469e-9263-a42372c3c831"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movment"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""59ec86d5-6182-4a7a-a387-98cbae29454f"",
+                    ""name"": ""up"",
+                    ""id"": ""29857f31-c55a-4efa-9303-a9a2bbe9e752"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Horizontal"",
-                    ""id"": ""22f99579-1118-4d9f-a3e9-b333c8fecd14"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""down"",
+                    ""id"": ""7a5005e3-44f9-4c16-843b-e53865040082"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movment"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""ae819a5f-7270-436b-ae63-67e07ff0f165"",
+                    ""name"": ""left"",
+                    ""id"": ""686474cf-9978-4e35-8584-5c9e03126cc2"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""4a7b70d6-1e00-4cff-9437-a1f8b5fd5636"",
+                    ""name"": ""right"",
+                    ""id"": ""a4793340-06cd-43ed-af8e-f4089dc5a0f4"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -97,19 +86,7 @@ public class @MasterInput : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""Keyboard"",
-            ""bindingGroup"": ""Keyboard"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        }
-    ]
+    ""controlSchemes"": []
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
@@ -166,8 +143,8 @@ public class @MasterInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movment;
     public struct PlayerActions
     {
-        private @MasterInput m_Wrapper;
-        public PlayerActions(@MasterInput wrapper) { m_Wrapper = wrapper; }
+        private @InputMaster m_Wrapper;
+        public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movment => m_Wrapper.m_Player_Movment;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -192,15 +169,6 @@ public class @MasterInput : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-    private int m_KeyboardSchemeIndex = -1;
-    public InputControlScheme KeyboardScheme
-    {
-        get
-        {
-            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
-            return asset.controlSchemes[m_KeyboardSchemeIndex];
-        }
-    }
     public interface IPlayerActions
     {
         void OnMovment(InputAction.CallbackContext context);
