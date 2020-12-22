@@ -29,7 +29,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""Movment Keyboard"",
                     ""id"": ""7b285f3b-5a66-4764-a9ae-43a5b27ea842"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -84,7 +84,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Movment"",
+                    ""name"": ""Movment Gamepad"",
                     ""id"": ""c7902f2d-aa1f-4767-9bd2-98b2f68102ad"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -119,7 +119,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""1405f30e-f998-4552-8f0a-3b6ea0f2bbb7"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -130,7 +130,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""64751fdb-3994-4114-8d62-e685e4b706f2"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
