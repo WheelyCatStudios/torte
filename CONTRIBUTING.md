@@ -31,7 +31,7 @@ If you're already on the development team you may use the following steps to get
 Undefined at the moment
 
 ### Conventions
-- Name your branches something descriptive
+- Name your branches & commits something descriptive
 - Link PRs to the issues they close
 - Test before you push
 
