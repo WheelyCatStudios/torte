@@ -25,25 +25,51 @@ public class EntityMovmentScript : MonoBehaviour
         controls.Player.Movment.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Player.Movment.canceled += ctx => Move(Vector2.zero);
     }
-    
 
-    private void OnEnable() 
+
+    private void OnEnable()
     {
         //Enable Controlls
         controls.Enable();
     }
-    private void OnDisable() 
+    private void OnDisable()
     {
         //Disable Controlls
         controls.Disable();
     }
 
-    void Move(Vector2 direction)
+    public void Move(Vector2 direction)
     {
         //Setting direction to rigidbody Immediatly
         rb.velocity = direction * speed;
-        
+
         //Old Code (Doesnt work as Input Event is not called in a Update Loop)
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+    }
+
+    //Enable Movement Controlls
+    public void EnableMovement()
+    {
+        controls.Player.Movment.Enable();
+    }
+    public void EnableMovement(bool enable)
+    {
+        if (enable)
+            controls.Player.Movment.Enable();
+        else
+            controls.Player.Movment.Disable();
+    }
+
+    //Disable Movement Controlls
+    public void DisableMovement()
+    {
+        controls.Player.Movment.Disable();
+    }
+    public void DisableMovement(bool disable)
+    {
+        if (disable)
+            controls.Player.Movment.Disable();
+        else
+            controls.Player.Movment.Enable();
     }
 }
