@@ -5,30 +5,45 @@ using UnityEngine.InputSystem;
 
 public class EntityMovmentScript : MonoBehaviour
 {
-    public InputMaster controls;
-    public float speed = 1f;
     private Rigidbody2D rb;
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
+
+    public InputMaster controls;
+
+
+    [Header("Variables")]
+    public float speed = 1f;
+
+
     void Awake()
     {
+        //Get Components
+        rb = GetComponent<Rigidbody2D>();
+        //Create Input
         controls = new InputMaster();
+
+        //Register Inputs
         controls.Player.Movment.performed += ctx => Move(ctx.ReadValue<Vector2>());
+        controls.Player.Movment.canceled += ctx => Move(Vector2.zero);
     }
     
-    void Start() {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-    }
-    
-    private void OnEnable() {
+
+    private void OnEnable() 
+    {
+        //Enable Controlls
         controls.Enable();
     }
-    private void OnDisable() {
+    private void OnDisable() 
+    {
+        //Disable Controlls
         controls.Disable();
     }
+
     void Move(Vector2 direction)
     {
-        rb.MovePosition(rb.position + direction * speed);
+        //Setting direction to rigidbody Immediatly
+        rb.velocity = direction * speed;
+        
+        //Old Code (Doesnt work as Input Event is not called in a Update Loop)
+        //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 }
