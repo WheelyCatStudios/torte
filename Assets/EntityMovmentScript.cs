@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -48,7 +48,7 @@ public class EntityMovmentScript : MonoBehaviour
     {
         //Setting direction to rigidbody Immediatly
         rb.velocity = direction * speed * currentRunSpeedModifer;
-
+        Debug.Log(rb.velocity);
         //Old Code (Doesnt work as Input Event is not called in a Update Loop)
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
