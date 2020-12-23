@@ -34,8 +34,8 @@ public class EntityMovmentScript : MonoBehaviour
         controls = new InputMaster();
 
         //Register Inputs for Movment
-        controls.Player.Movment.performed += ctx => direction = ctx.ReadValue<Vector2>();
-        controls.Player.Movment.canceled += ctx => direction = Vector2.zero;
+        controls.Player.Movement.performed += ctx => direction = ctx.ReadValue<Vector2>();
+        controls.Player.Movement.canceled += ctx => direction = Vector2.zero;
         //Register Inputs for Run
         controls.Player.Run.performed += ctx => Run(runSpeedModifer);
         controls.Player.Run.canceled += ctx => Run(1.0f);
