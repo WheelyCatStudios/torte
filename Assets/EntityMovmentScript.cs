@@ -73,20 +73,19 @@ public class EntityMovmentScript : MonoBehaviour
     // Video link https://www.youtube.com/watch?v=uVKHllD-JZk
 	#endregion
     
-
+	#region MonoBehaviour
     void Awake()
     {
-        //Get Components
-        rb = GetComponent<Rigidbody2D>();
-        //Create Input
-        controls = new InputMaster();
+        rb = GetComponent<Rigidbody2D>();	//Get Components
+        controls = new InputMaster();       //Create Input
 
         //Register Inputs for Movment
         controls.Player.Movment.performed += ctx => direction = ctx.ReadValue<Vector2>();
         controls.Player.Movment.canceled += ctx => direction = Vector2.zero;
+
         //Register Inputs for Run
-        controls.Player.Run.performed += ctx => Run(runSpeedModifer);
-        controls.Player.Run.canceled += ctx => Run(1.0f);
+        controls.Player.Run.performed += ctx => setSpeedModifer(runSpeedModifer);
+        controls.Player.Run.canceled += ctx => setSpeedModifer(1.0f);
 
         //Set maxSpeed (if not already set)
         maxSpeed = (maxSpeed > 0) ? maxSpeed : (speed * runSpeedModifer);
@@ -98,125 +97,88 @@ public class EntityMovmentScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// MonoBehaviour framely update
     /// </summary>
-    void Update()
-    {
-        Debug.Log(rb.velocity);
-    }
+    void Update() => Debug.Log(rb.velocity); // TODO log should not pass through pull request
 
-    private void FixedUpdate() {
-        Move(direction);
-    }
+    private void FixedUpdate() => Move(direction);
 
-
-    private void OnEnable()
-    {
-        //Enable Controlls
-        controls.Enable();
-    }
-    private void OnDisable()
-    {
-        //Disable Controlls
-        controls.Disable();
-    }
-
-    public void Move(Vector2 direction)
-    {
-        //Setting direction to rigidbody Immediatly
-        rb.velocity = direction * speed * currentRunSpeedModifer;
-        //Old Code (Doesnt work as Input Event is not called in a Update Loop)
-        //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
-    }
-
-    public void Run(float speed)
-    {
-        currentRunSpeedModifer = speed;
-    }
-
-    //Enable Player Contorl
-    public void EnableControl()
-    {
-        controls.Player.Enable();
-    }
-    public void EnableControl(bool enable)
+	#region enable/disable
 	/// <summary>
 	/// Enables the entire input master when this monobehavior is enabled
 	/// </summary>
+    private void OnEnable() => controls.Enable();
+
 	/// <summary>
 	/// Disables the entire input master when this monobehavior is disabled
 	/// </summary>
+    private void OnDisable() => controls.Disable();
+	
 	/// <summary>
 	/// Disables all player controls
 	/// </summary>
+    public void EnableControl() => setEnableControl(true);
+	
 	/// <summary>
 	/// Disables all player controls
 	/// </summary>
+	public void DisableControl() => setEnableControl(false);
+
 	/// <summary>
 	/// Enables the player's ability to use movement controls
 	/// Other controlls are uneffected
 	/// </summary>
+	public void EnableMovementControl() => setEnableMovementControl(true);
+
 	/// <summary>
 	/// Disables the player's ability to use movement controls
 	/// Other controlls are uneffected
 	/// </summary>
+	public void DisableMovementControl() => setEnableMovementControl(false);
+    
 	/// <summary>
 	/// Enables / Disables all player control via the input master according to <paramref name="enable"/>
 	/// </summary>
 	/// <param name="enable">If true, input master is enabled, otherise disabled</param>
+    public void setEnableControl(bool enable)
     {
         if (enable)
             controls.Player.Enable();
         else
             controls.Player.Disable();
-    }
-
-    //Disable Player Control
-    public void DisableControl()
-    {
-        controls.Player.Disable();
-    }
-    public void DisableControl(bool disable)
+	}
+	
 	/// <summary>
 	/// Enables / Disables player's ability to control movement via the input master according to <paramref name="enable"/>
 	/// Other controlls are uneffected
 	/// </summary>
 	/// <param name="disable"></param>
+	public void setEnableMovementControl(bool disable)
     {
         if (disable)
-            controls.Player.Disable();
-        else
-            controls.Player.Enable();
-    }
-    
-    //Enable Movement Controlls
-    public void EnableMovement()
-    {
-        controls.Player.Movment.Enable();
-    }
-    public void EnableMovement(bool enable)
-    {
-        if (enable)
-            controls.Player.Movment.Enable();
-        else
             controls.Player.Movment.Disable();
+        else
+            controls.Player.Movment.Enable();
     }
 
-    //Disable Movement Controlls
-    public void DisableMovement()
-    {
-        controls.Player.Movment.Disable();
-    }
-    public void DisableMovement(bool disable)
+	#endregion enable/disable
+	#endregion MonoBehaviour
+
+	#region Movement
 	/// <summary>
 	/// Replaces any current velicity with <code><paramref name="direction"/> * speed * currentRunSpeedModifyer </code>
 	/// </summary>
 	/// <param name="direction">Direction we should move</param>
+    public void Move(Vector2 direction)
     {
-        if (disable)
-            controls.Player.Movment.Disable();
-        else
-            controls.Player.Movment.Enable();
+        rb.velocity = direction * speed * currentRunSpeedModifer; //Setting direction to rigidbody Immediately
+		
 		// TODO : Commented code should not pass through pull request.
+        //Old Code (Doesnt work as Input Event is not called in a Update Loop)
+        //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
+
+    public void setSpeedModifer(float speed) => currentRunSpeedModifer = speed;
+
+	#endregion Movement
 }
