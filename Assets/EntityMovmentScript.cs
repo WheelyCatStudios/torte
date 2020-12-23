@@ -63,6 +63,7 @@ public class EntityMovmentScript : MonoBehaviour
 	/// </summary>
     private float accelRateWalkToRun;
     // Video link https://www.youtube.com/watch?v=uVKHllD-JZk
+	#endregion
     
 
     void Awake()
