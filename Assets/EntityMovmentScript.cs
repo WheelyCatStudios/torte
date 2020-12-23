@@ -47,7 +47,7 @@ public class EntityMovmentScript : MonoBehaviour
     public void Move(Vector2 direction)
     {
         //Setting direction to rigidbody Immediatly
-        rb.velocity = direction * speed * currentRunSpeedModifer;
+        rb.velocity = direction * speed;
         Debug.Log(rb.velocity);
         //Old Code (Doesnt work as Input Event is not called in a Update Loop)
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
@@ -56,6 +56,7 @@ public class EntityMovmentScript : MonoBehaviour
     public void Run(float speed)
     {
         currentRunSpeedModifer = speed;
+        rb.velocity *= currentRunSpeedModifer;
     }
 
     //Enable Player Contorl
