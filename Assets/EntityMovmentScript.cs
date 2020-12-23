@@ -42,7 +42,7 @@ public class EntityMovmentScript : MonoBehaviour
         Debug.Log(rb.velocity);
     }
 
-    private void LateUpdate() {
+    private void FixedUpdate() {
         Move(direction);
     }
 
