@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.InputSystem;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public InputMaster controls;
 
     private Vector3 targetPosition;
     private Vector3 dampVelocity = Vector3.zero;
+
     private Transform target;
 
     private BoundsInt tilemapBoundaries;
+
+    private Vector2 clampValuesX;
+    private Vector2 clampValuesY;
 
     private Camera mainCamera;
     private Vector2 cameraSize;
@@ -34,11 +36,7 @@ public class CameraBehaviour : MonoBehaviour
     [Tooltip("Time (in Seconds) in which the camera will be focusing on secondary target")]
     public float timeUntilReturn;
 
-    private void Awake()
-    {
-        controls = new InputMaster();
-        controls.Player.Interact.performed += ctx => TriggerFocusChange();
-    }
+    private Vector2 GetCameraSize => new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
 
     private void Start()
     {
@@ -46,14 +44,24 @@ public class CameraBehaviour : MonoBehaviour
 
         mainCamera = GetComponent<Camera>();
 
-        cameraSize = new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
+        cameraSize = GetCameraSize;
         tilemapBoundaries = tilemap.cellBounds;
+
+        CalculateClampValues();
     }
 
-    public bool FocusingPrimary => target == primaryTarget;
-    public bool ReturnTimerIsActive => timeUntilReturn > 0;
+    //Putting this in a function just in case the tilemap or the camera size change on Runtime
+    private void CalculateClampValues()
+    {
+        clampValuesX = new Vector2(tilemapBoundaries.xMin + cameraSize.x, tilemapBoundaries.xMax - cameraSize.x);
+        clampValuesY = new Vector2(tilemapBoundaries.yMin + cameraSize.y, tilemapBoundaries.yMax - cameraSize.y);
+    }
 
-    private void TriggerFocusChange()
+    //This is public so you can do things like block player movement in case is not the focus
+    public bool FocusingPrimary => target == primaryTarget;
+    private bool ReturnTimerIsActive => timeUntilReturn > 0;
+
+    public void TriggerFocusChange()
     {
         if(!FocusingPrimary && !ReturnTimerIsActive)
         {
@@ -65,7 +73,7 @@ public class CameraBehaviour : MonoBehaviour
         }
     }
 
-    public void ReturnFocusToPrimary()
+    private void ReturnFocusToPrimary()
     {
         target = primaryTarget;
     }
@@ -84,27 +92,18 @@ public class CameraBehaviour : MonoBehaviour
     }
 
 
-    public bool TargetTooClose => Vector2.Distance(target.position, transform.position) < 0.1f;
+    private bool TargetTooClose => Vector2.Distance(target.position, transform.position) < 0.1f;
 
     void FixedUpdate()
     {
         if (TargetTooClose) return;
 
-        targetPosition = new Vector3(target.position.x, target.position.y, -10f);
+        print(target.position);
 
-        targetPosition.x = Mathf.Clamp(targetPosition.x, tilemapBoundaries.xMin + cameraSize.x, tilemapBoundaries.xMax - cameraSize.x);
-        targetPosition.y = Mathf.Clamp(targetPosition.y, tilemapBoundaries.yMin + cameraSize.y, tilemapBoundaries.yMax - cameraSize.y);
+        //Restrict the camera position to Map's Boundaries
+        targetPosition = new Vector3(Mathf.Clamp(target.position.x, clampValuesX.x, clampValuesX.y), Mathf.Clamp(target.position.y, clampValuesY.x, clampValuesY.y), -10f);
         
+        //Moving the camera to target's position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref dampVelocity, smoothTime * Time.deltaTime);
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
     }
 }
