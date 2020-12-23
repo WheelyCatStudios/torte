@@ -28,9 +28,9 @@ public class EntityMovmentScript : MonoBehaviour
         //Register Inputs for Movment
         controls.Player.Movment.performed += ctx => direction = ctx.ReadValue<Vector2>();
         controls.Player.Movment.canceled += ctx => direction = Vector2.zero;
-        /*//Register Inputs for Run
+        //Register Inputs for Run
         controls.Player.Run.performed += ctx => Run(runSpeedModifer);
-        controls.Player.Run.canceled += ctx => Run(1.0f);*/
+        controls.Player.Run.canceled += ctx => Run(1.0f);
         
     }
 
@@ -61,7 +61,7 @@ public class EntityMovmentScript : MonoBehaviour
     public void Move(Vector2 direction)
     {
         //Setting direction to rigidbody Immediatly
-        rb.velocity = direction * speed;
+        rb.velocity = direction * speed * currentRunSpeedModifer;
         //Old Code (Doesnt work as Input Event is not called in a Update Loop)
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
@@ -69,7 +69,6 @@ public class EntityMovmentScript : MonoBehaviour
     public void Run(float speed)
     {
         currentRunSpeedModifer = speed;
-        rb.velocity *= currentRunSpeedModifer;
     }
 
     //Enable Player Contorl
