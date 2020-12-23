@@ -10,13 +10,19 @@ public class EntityMovmentScript : MonoBehaviour
     public InputMaster controls;
 
     [Header("Variables")]
+    
+    private Vector2 direction = Vector2.zero;
     public float speed = 1f;
     public float runSpeedModifer = 2f;
 
-    private float currentRunSpeedModifer = 1f;
+    rivate float currentRunSpeedModifer = 1f;
 
-    private Vector2 direction = Vector2.zero;
+    public float maxSpeed = 0f; // Will defalt to speed*runSpeedModifer
 
+    public float timeOfAcceleration = 2.5f;
+
+    private float accelRateIdleToWalk;
+    private float accelRateWalkToRun;
 
     void Awake()
     {
@@ -31,6 +37,13 @@ public class EntityMovmentScript : MonoBehaviour
         //Register Inputs for Run
         controls.Player.Run.performed += ctx => Run(runSpeedModifer);
         controls.Player.Run.canceled += ctx => Run(1.0f);
+
+        //Set maxSpeed (if not already set)
+        maxSpeed = (maxSpeed > 0) ? maxSpeed : (speed * runSpeedModifer);
+
+        //Calucate Acceleration
+        accelRateIdleToWalk = speed / timeOfAcceleration;
+        accelRateWalkToRun = ((speed * runSpeedModifer) - speed) / timeOfAcceleration;
         
     }
 
