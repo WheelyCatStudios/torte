@@ -63,6 +63,9 @@ torte_WwiseProject/.cache/*
 torte_WwiseProject/**/*.validationcache
 *.wsettings
 logRunSetup.txt
+Assets/WwiseSettings.xml
+Assets/WwiseSettings.xml.meta
+
 
 
 # Custom
