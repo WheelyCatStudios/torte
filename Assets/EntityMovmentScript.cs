@@ -21,9 +21,11 @@ public class EntityMovmentScript : MonoBehaviour
         //Create Input
         controls = new InputMaster();
 
-        //Register Inputs
+        //Register Inputs for Movment
         controls.Player.Movment.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Player.Movment.canceled += ctx => Move(Vector2.zero);
+        //Register Inputs for Run
+        
     }
 
 
@@ -47,6 +49,32 @@ public class EntityMovmentScript : MonoBehaviour
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
+    //Enable Player Contorl
+    public void EnableControl()
+    {
+        controls.Player.Enable();
+    }
+    public void EnableControl(bool enable)
+    {
+        if (enable)
+            controls.Player.Enable();
+        else
+            controls.Player.Disable();
+    }
+
+    //Disable Player Control
+    public void DisableControl()
+    {
+        controls.Player.Disable();
+    }
+    public void DisableControl(bool disable)
+    {
+        if (disable)
+            controls.Player.Disable();
+        else
+            controls.Player.Enable();
+    }
+    
     //Enable Movement Controlls
     public void EnableMovement()
     {
