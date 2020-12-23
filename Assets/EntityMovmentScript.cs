@@ -16,10 +16,10 @@ public class EntityMovmentScript : MonoBehaviour
 	/// </summary>
     private Rigidbody2D rb;
 
-    public InputMaster controls;
 	/// <summary>
 	/// The user input collector
 	/// </summary>
+    private InputMaster controls;
 
     [Header("Variables")]
     
@@ -27,32 +27,40 @@ public class EntityMovmentScript : MonoBehaviour
 	/// This entities current direction
 	/// </summary>
     private Vector2 direction = Vector2.zero;
-    public float speed = 1f;
-    public float runSpeedModifer = 2f;
 
 	/// <summary>
 	/// This entities current speed
 	/// </summary>
+	[SerializeField]
+	[Tooltip("The entities current speed")]
+    private float speed = 1f;
+
 	/// <summary>
 	/// The speed modifyer for running.
 	/// <code>runningSpeed = (speed * runSpeedMod)</code>
 	/// </summary>
+	[SerializeField]
+	[Tooltip("The speed modifyer for running")]
+    private float runSpeedModifer = 2f;
+
 	/// <summary>
 	/// Current speed modifier
 	/// <code>actualspeed = (speed * runSpeedMod)</code>
 	/// </summary>
     private float currentRunSpeedModifer = 1f;
 
-    public float maxSpeed = 0f; // Will defalt to speed*runSpeedModifer
-
-    public float timeOfAcceleration = 2.5f;
-
 	/// <summary>
 	/// The maximum speed at which this entity can travel
 	/// </summary>
+	[SerializeField]
+    private float maxSpeed = 0f; // Will defalt to speed*runSpeedModifer
+
 	/// <summary>
 	/// The time that will be taken to accelerate
 	/// </summary>
+	[SerializeField]
+    private readonly float timeOfAcceleration = 2.5f;
+
 	/// <summary>
 	/// Rate of acceleration between idle to walking
 	/// </summary>
