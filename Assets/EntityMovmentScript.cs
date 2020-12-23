@@ -32,6 +32,14 @@ public class EntityMovmentScript : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        Debug.Log(rb.velocity);
+    }
+
 
     private void OnEnable()
     {
@@ -48,7 +56,6 @@ public class EntityMovmentScript : MonoBehaviour
     {
         //Setting direction to rigidbody Immediatly
         rb.velocity = direction * speed;
-        Debug.Log(rb.velocity);
         //Old Code (Doesnt work as Input Event is not called in a Update Loop)
         //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
