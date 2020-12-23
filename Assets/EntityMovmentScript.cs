@@ -15,7 +15,7 @@ public class EntityMovmentScript : MonoBehaviour
     public float speed = 1f;
     public float runSpeedModifer = 2f;
 
-    rivate float currentRunSpeedModifer = 1f;
+    private float currentRunSpeedModifer = 1f;
 
     public float maxSpeed = 0f; // Will defalt to speed*runSpeedModifer
 
