@@ -62,6 +62,8 @@ crashlytics-build.properties
 torte_WwiseProject/.cache/*
 torte_WwiseProject/**/*.validationcache
 *.wsettings
+logRunSetup.txt
+
 
 # Custom
 *.DS_Store
