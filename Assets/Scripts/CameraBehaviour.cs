@@ -114,7 +114,7 @@ public class CameraBehaviour : MonoBehaviour
             if (returnTime > 0)
             {
                 yield return new WaitForSeconds(timeUntilReturn);
-                target = primaryTarget;
+                ReturnFocusToPrimary();
             }
         }
     }
