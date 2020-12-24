@@ -40,8 +40,8 @@ public class EntityMovmentScript : MonoBehaviour
 	/// <code>runningSpeed = (speed * runSpeedMod)</code>
 	/// </summary>
 	[SerializeField]
-	[Tooltip("The speed modifyer for running")]
-    private float runSpeedModifer = 2f;
+	[Tooltip("The speed modifer for running")]
+    private float runSpeedModifer = 2f; //TODO Reenable run behavior
 
 	/// <summary>
 	/// Current speed modifier
