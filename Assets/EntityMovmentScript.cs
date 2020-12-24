@@ -19,7 +19,7 @@ public class EntityMovmentScript : MonoBehaviour
 	/// <summary>
 	/// The user input collector
 	/// </summary>
-    private InputMaster controls = new InputMaster();
+    private InputMaster controls;
 
     [Header("Variables")]
     
@@ -89,6 +89,7 @@ public class EntityMovmentScript : MonoBehaviour
 	/// </summary>
 	private void PopulateAttributes() {
 		rb = GetComponent<Rigidbody2D>();	//Get Components
+		controls = new InputMaster(); 				// Create Input Master
 
         //Set maxSpeed (if not already set)
         maxSpeed = (maxSpeed > 0) ? maxSpeed : (speed * runSpeedModifer);
