@@ -54,6 +54,23 @@ public class EntityMovmentScript : MonoBehaviour
 	/// </summary>
 	[SerializeField]
     private float maxSpeed = 0f; // Will defalt to speed*runSpeedModifer
+	
+	/// <summary>
+	/// The time that will be taken to accelerate
+	/// </summary>
+	[SerializeField]
+    private readonly float timeOfAcceleration = 2.5f;
+
+	/// <summary>
+	/// Rate of acceleration between idle to walking
+	/// </summary>
+    private float accelRateIdleToWalk;
+
+	/// <summary>
+	/// rate of accelleration between walking to running
+	/// </summary>
+    private float accelRateWalkToRun;
+    // Video link https://www.youtube.com/watch?v=uVKHllD-JZk
 	#endregion
 
 	#region construction
@@ -76,6 +93,10 @@ public class EntityMovmentScript : MonoBehaviour
 
         //Set maxSpeed (if not already set)
         maxSpeed = (maxSpeed > 0) ? maxSpeed : (speed * runSpeedModifer);
+		
+        //Calucate Acceleration
+        accelRateIdleToWalk = speed / timeOfAcceleration;
+        accelRateWalkToRun = ((speed * runSpeedModifer) - speed) / timeOfAcceleration;
 	}
 
 	/// <summary>
