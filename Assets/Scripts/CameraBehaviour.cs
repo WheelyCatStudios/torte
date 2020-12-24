@@ -95,13 +95,9 @@ public class CameraBehaviour : MonoBehaviour
     public void TriggerFocusChange()
     {
         if(!FocusingPrimary && !ReturnTimerIsActive)
-        {
             ReturnFocusToPrimary();
-        }
         else if (FocusingPrimary)
-        {
             StartCoroutine(ChangeTargetFocus(secondaryTarget, timeUntilReturn));
-        }
     }
 
     private void ReturnFocusToPrimary() => target = primaryTarget;
