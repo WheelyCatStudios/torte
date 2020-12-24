@@ -6,7 +6,7 @@ namespace CameraBehaviour {
 [RequireComponent(typeof(Camera))]
 public class CameraBehaviour : MonoBehaviour
 {
-
+	#region attribute
     private Vector3 targetPosition;
     private Vector3 dampVelocity = Vector3.zero;
 
@@ -20,22 +20,31 @@ public class CameraBehaviour : MonoBehaviour
     private Camera mainCamera;
     private Vector2 cameraSize;
 
+	#region inspectable attributes
     [Header("Tilemap Settings")]
-    public Tilemap tilemap;
+	[SerializeField]
+    private Tilemap tilemap;
 
     [Header("Tracking Settings")]
-    public Transform primaryTarget;
+	[SerializeField]
+    private Transform primaryTarget;
     [Space]
+
 
     [Tooltip("A bigger number means a longer time for the camera to reach the target")]
     [Range(0,35)]
-    public float smoothTime;
+	[SerializeField]
+    private float smoothTime;
 
     [Header("Changing Focus")]
-    public Transform secondaryTarget;
+	[SerializeField]
+    private Transform secondaryTarget;
 
     [Tooltip("Time (in Seconds) in which the camera will be focusing on secondary target")]
-    public float timeUntilReturn;
+	[SerializeField]
+    private float timeUntilReturn;
+	#endregion inspectable attributes
+	#endregion Attribute
 
     private Vector2 GetCameraSize => new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
 
