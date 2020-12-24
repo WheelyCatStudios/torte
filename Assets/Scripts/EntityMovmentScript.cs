@@ -192,10 +192,6 @@ public class EntityMovmentScript : MonoBehaviour
     public void Move(Vector2 direction)
     {
         rb.velocity = direction * speed * currentRunSpeedModifer; //Setting direction to rigidbody Immediately
-		
-		// TODO : Commented code should not pass through pull request.
-        //Old Code (Doesnt work as Input Event is not called in a Update Loop)
-        //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
     public void setSpeedModifer(float speed) => currentRunSpeedModifer = speed;
