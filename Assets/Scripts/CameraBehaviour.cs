@@ -104,10 +104,7 @@ public class CameraBehaviour : MonoBehaviour
         }
     }
 
-    private void ReturnFocusToPrimary()
-    {
-        target = primaryTarget;
-    }
+    private void ReturnFocusToPrimary() => target = primaryTarget;
 
     IEnumerator ChangeTargetFocus(Transform newTarget, float returnTime = 0)
     {
