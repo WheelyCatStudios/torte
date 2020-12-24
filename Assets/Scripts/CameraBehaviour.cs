@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(Camera))]
 public class CameraBehaviour : MonoBehaviour
 {
 
