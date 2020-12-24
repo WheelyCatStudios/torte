@@ -106,11 +106,13 @@ public class CameraBehaviour : MonoBehaviour
 
     private void ReturnFocusToPrimary() => target = primaryTarget;
 
+	private void SetFocusTarget(Transform newTarget) => target = newTarget;
+
     IEnumerator ChangeTargetFocus(Transform newTarget, float returnTime = 0)
     {
         if(newTarget != null)
         {
-            target = newTarget;
+            SetFocusTarget(newTarget);
             if (returnTime > 0)
             {
                 yield return new WaitForSeconds(timeUntilReturn);
