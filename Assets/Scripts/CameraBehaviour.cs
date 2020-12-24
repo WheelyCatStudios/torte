@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+namespace CameraBehaviour {
 [RequireComponent(typeof(Camera))]
 public class CameraBehaviour : MonoBehaviour
 {
@@ -106,4 +107,5 @@ public class CameraBehaviour : MonoBehaviour
         //Moving the camera to target's position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref dampVelocity, smoothTime * Time.deltaTime);
     }
+}
 }

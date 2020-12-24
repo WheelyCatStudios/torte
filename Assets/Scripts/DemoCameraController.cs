@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+namespace CameraBehaviour {
 public class DemoCameraController : MonoBehaviour
 {
     public InputMaster controls;
@@ -21,4 +22,5 @@ public class DemoCameraController : MonoBehaviour
     {
         controls.Disable();
     }
+}
 }
