@@ -104,12 +104,12 @@ public class EntityMovmentScript : MonoBehaviour
 	/// </summary>
 	private void RegisterInputs(){
         //Register Inputs for Movment
-        controls.Player.Movment.performed += ctx => direction = ctx.ReadValue<Vector2>();
-        controls.Player.Movment.canceled += ctx => direction = Vector2.zero;
+        controls.Player.Movement.performed += ctx => direction = ctx.ReadValue<Vector2>();
+        controls.Player.Movement.canceled += ctx => direction = Vector2.zero;
 
         //Register Inputs for Run
-        controls.Player.Run.performed += ctx => setSpeedModifer(runSpeedModifer);
-        controls.Player.Run.canceled += ctx => setSpeedModifer(1.0f);
+        /*controls.Player.Run.performed += ctx => setSpeedModifer(runSpeedModifer);
+        controls.Player.Run.canceled += ctx => setSpeedModifer(1.0f);*/
 	}
 
 	#endregion
@@ -176,9 +176,9 @@ public class EntityMovmentScript : MonoBehaviour
 	public void setEnableMovementControl(bool disable)
     {
         if (disable)
-            controls.Player.Movment.Disable();
+            controls.Player.Movement.Disable();
         else
-            controls.Player.Movment.Enable();
+            controls.Player.Movement.Enable();
     }
 
 	#endregion enable/disable
