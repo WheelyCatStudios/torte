@@ -19,7 +19,7 @@ public class EntityMovmentScript : MonoBehaviour
 	/// <summary>
 	/// The user input collector
 	/// </summary>
-    private InputMaster controls;
+    private InputMaster controls = new InputMaster();
 
     [Header("Variables")]
     
@@ -72,20 +72,23 @@ public class EntityMovmentScript : MonoBehaviour
     private float accelRateWalkToRun;
     // Video link https://www.youtube.com/watch?v=uVKHllD-JZk
 	#endregion
-    
-	#region MonoBehaviour
+
+	#region construction
+
+	/// <summary>
+	/// MonoBehaviour constructor replacement
+	/// </summary>
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();	//Get Components
-        controls = new InputMaster();       //Create Input
+        PopulateAttributes();
+		RegisterInputs();
+	}
 
-        //Register Inputs for Movment
-        controls.Player.Movment.performed += ctx => direction = ctx.ReadValue<Vector2>();
-        controls.Player.Movment.canceled += ctx => direction = Vector2.zero;
-
-        //Register Inputs for Run
-        controls.Player.Run.performed += ctx => setSpeedModifer(runSpeedModifer);
-        controls.Player.Run.canceled += ctx => setSpeedModifer(1.0f);
+	/// <summary>
+	/// Populates maxSpeed, Acceleration rates, 
+	/// </summary>
+	private void PopulateAttributes() {
+		rb = GetComponent<Rigidbody2D>();	//Get Components
 
         //Set maxSpeed (if not already set)
         maxSpeed = (maxSpeed > 0) ? maxSpeed : (speed * runSpeedModifer);
@@ -93,9 +96,25 @@ public class EntityMovmentScript : MonoBehaviour
         //Calucate Acceleration
         accelRateIdleToWalk = speed / timeOfAcceleration;
         accelRateWalkToRun = ((speed * runSpeedModifer) - speed) / timeOfAcceleration;
-        
-    }
+	}
 
+	/// <summary>
+	/// Registers user input hooks for movement start / stop
+	/// </summary>
+	private void RegisterInputs(){
+        //Register Inputs for Movment
+        controls.Player.Movment.performed += ctx => direction = ctx.ReadValue<Vector2>();
+        controls.Player.Movment.canceled += ctx => direction = Vector2.zero;
+
+        //Register Inputs for Run
+        controls.Player.Run.performed += ctx => setSpeedModifer(runSpeedModifer);
+        controls.Player.Run.canceled += ctx => setSpeedModifer(1.0f);
+	}
+
+	#endregion
+    
+	#region MonoBehaviour
+	
     /// <summary>
     /// MonoBehaviour framely update
     /// </summary>
