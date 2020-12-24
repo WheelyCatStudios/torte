@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EntityMovmentScript : MonoBehaviour
+public class EntityMovmentScriptOld : MonoBehaviour
 {
     private Rigidbody2D rb;
 
