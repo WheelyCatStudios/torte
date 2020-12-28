@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2a94c0a5fc362bd4f85d44409ddbf641
+=======
+guid: f8b38474fe0a1534986571895f105d4e
+>>>>>>> entity-movment-epic
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
