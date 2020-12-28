@@ -119,7 +119,7 @@ public class EntityMovmentScript : MonoBehaviour
     /// <summary>
     /// MonoBehaviour framely update
     /// </summary>
-    void Update() => Debug.Log(rb.velocity); // TODO log should not pass through pull request
+    // void Update() =>
 
     private void FixedUpdate() => Move(direction);
 
