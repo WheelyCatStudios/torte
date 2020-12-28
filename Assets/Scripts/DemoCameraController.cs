@@ -10,7 +10,7 @@ public class DemoCameraController : MonoBehaviour
     {
         cameraScript = Camera.main.GetComponent<CameraBehaviour>();
         controls = new InputMaster();
-        controls.Player.Interact.performed += ctx => cameraScript.TriggerFocusChange();
+        controls.Player.Interaction.performed += ctx => cameraScript.TriggerFocusChange();
     }
 
     private void OnEnable()
