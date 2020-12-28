@@ -186,13 +186,11 @@ public class EntityMovmentScript : MonoBehaviour
 
 	#region Movement
 	/// <summary>
-	/// Replaces any current velicity with <code><paramref name="direction"/> * speed * currentRunSpeedModifyer </code>
+	/// Immediately replaces any current velicity on the attached rigidbody with <code><paramref name="direction"/> * speed * currentRunSpeedModifyer </code>
 	/// </summary>
 	/// <param name="direction">Direction we should move</param>
-    public void Move(Vector2 direction)
-    {
-        rb.velocity = direction * speed * currentRunSpeedModifer; //Setting direction to rigidbody Immediately
-    }
+    public void Move(Vector2 direction) => 
+        rb.velocity = direction * speed * currentRunSpeedModifer;
 
     public void setSpeedModifer(float speed) => currentRunSpeedModifer = speed;
 
