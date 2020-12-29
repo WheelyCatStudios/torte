@@ -84,7 +84,7 @@ public class CameraBehaviour : MonoBehaviour
         print(target.position);
 
         //Restrict the camera position to Map's Boundaries
-        targetPosition = new Vector3(Mathf.Clamp(target.position.x, clampValuesX.x, clampValuesX.y), Mathf.Clamp(target.position.y, clampValuesY.x, clampValuesY.y), -10f);
+        targetPosition = new Vector3(Mathf.Clamp(target.position.x, clampValuesX.x, clampValuesX.y), Mathf.Clamp(target.position.y, clampValuesY.x, clampValuesY.y), transform.position.z);
         
         //Moving the camera to target's position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref dampVelocity, smoothTime * Time.deltaTime);
