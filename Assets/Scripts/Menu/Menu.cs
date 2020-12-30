@@ -11,30 +11,13 @@ public class Menu : MonoBehaviour
     public AudioClip bootClip;
 
     // Activate and Deactivate UI Gameobjects
-    public void OCObject(GameObject obj)
-    {
-        if (obj.activeInHierarchy)
-        {
-            obj.SetActive(false);
-        }
-        else
-        {
-            obj.SetActive(true);
-        }
-
-    }
+    public void OCObject(GameObject obj) => obj.SetActive(!obj.activeInHierarchy);
 
     // Load Scene
-    public void LoadScene(int scene)
-    {
-        StartCoroutine(LoadSceneFancy(scene));
-    }
+    public void LoadScene(int scene) => StartCoroutine(LoadSceneFancy(scene));
 
     // Close Editor && Close Game
-    public void ExitGame()
-    {
-        StartCoroutine(ExitGameFancy());
-    }
+    public void ExitGame() => StartCoroutine(ExitGameFancy());
 
     IEnumerator LoadSceneFancy(int scene)
     {
@@ -52,8 +35,6 @@ public class Menu : MonoBehaviour
         anim.SetTrigger("Exit");
 
         yield return new WaitForSeconds(6f);
-
-        Debug.Log("Exiting Game");
 
         #if UNITY_EDITOR
             EditorApplication.ExitPlaymode();
