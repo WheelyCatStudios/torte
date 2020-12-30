@@ -70,7 +70,6 @@ public class EntityMovmentScript : MonoBehaviour
 	/// rate of accelleration between walking to running
 	/// </summary>
     private float accelRateWalkToRun;
-    // Video link https://www.youtube.com/watch?v=uVKHllD-JZk
 	#endregion
 
 	#region construction
