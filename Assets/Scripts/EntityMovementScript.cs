@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 /// Also provides user control to an entity via <code>InputMaster</code>
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class EntityMovmentScript : MonoBehaviour
+public class EntityMovementScript : MonoBehaviour
 {
 	#region attributes
 	/// <summary>
