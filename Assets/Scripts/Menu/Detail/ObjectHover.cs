@@ -12,37 +12,16 @@ public class ObjectHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Sound")]
     public AudioClip sound;
 
-    bool hover;
+    public void OnPointerEnter(PointerEventData eventData) => SetHoverState(true);
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData) => SetHoverState(false);
+
+    private void SetHoverState(bool hover)
     {
-        hover = true;
-
-        if(anim != null)
-        {
+        if (anim)
             anim.SetBool("Hover", hover);
-        }
 
-        if(pin != null)
-        {
-            pin.SetActive(true);
-        }
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        hover = false;
-
-        if (anim != null)
-        {
-            anim.SetBool("Hover", hover);
-        }
-
-        if (pin != null)
-        {
-            pin.SetActive(false);
-        }
-
+        if (pin)
+            pin.SetActive(hover);
     }
 }
