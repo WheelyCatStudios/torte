@@ -52,6 +52,7 @@ public class CameraBehaviour : MonoBehaviour
 	#endregion Attribute
 
 	#region utility
+	private bool isTargetTooClose() => Vector2.Distance(target.position, transform.position) < 0.1f;
 
 	//Putting this in a function just in case the tilemap or the camera size change on Runtime
     private void CalculateClampValues()
@@ -60,8 +61,6 @@ public class CameraBehaviour : MonoBehaviour
         clampValuesX = new Vector2(tilemapBoundaries.xMin + cameraSize.x, tilemapBoundaries.xMax - cameraSize.x);
         clampValuesY = new Vector2(tilemapBoundaries.yMin + cameraSize.y, tilemapBoundaries.yMax - cameraSize.y);
     }
-
-	private bool TargetTooClose => Vector2.Distance(target.position, transform.position) < 0.1f;
 
 	#endregion utility
 
@@ -80,7 +79,7 @@ public class CameraBehaviour : MonoBehaviour
 
 	void FixedUpdate()
     {
-        if (TargetTooClose) return;
+        if (isTargetTooClose()) return;
 
         targetPosition = target.position;
 
