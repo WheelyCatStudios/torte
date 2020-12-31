@@ -3,11 +3,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Menu : MonoBehaviour
 {
-    [Header("Fancy")]
-    public Animator anim;
-    public AudioSource source;
+    private Animator anim;
+    private AudioSource source;
     public AudioClip bootClip;
 
     // Activate and Deactivate UI Gameobjects
@@ -18,6 +19,11 @@ public class Menu : MonoBehaviour
 
     // Close Editor && Close Game
     public void ExitGame() => StartCoroutine(ExitGameFancy());
+
+	void Start() {
+		anim = GetComponent<Animator>();
+		source = GetComponent<AudioSource>();
+	}
 
     IEnumerator LoadSceneFancy(int scene)
     {
