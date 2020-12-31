@@ -105,7 +105,7 @@ public class CameraBehaviour : MonoBehaviour
     }
     private Vector2 SetCameraSize() => cameraSize = new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
 
-    private void SetFocusToPrimary() => target = primaryTarget;
+    private void SetFocusToPrimary() => SetFocusTarget(primaryTarget);
 
 	private void SetFocusTarget(Transform newTarget) => target = newTarget;
 
