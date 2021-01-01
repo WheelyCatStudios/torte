@@ -30,6 +30,11 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
+      - uses: webbertakken/unity-test-runner@v1.3
+        id: testRunner
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          unityVersion: ${{ matrix.unityVersion }}
       - name: Build project
         uses: webbertakken/unity-builder@v0.10
         with:
