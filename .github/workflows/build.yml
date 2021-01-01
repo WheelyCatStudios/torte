@@ -1,9 +1,7 @@
 name: build 
 
 on:
-  pull_request:
-    branches:
-      - develop
+  pull_request: {}
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
