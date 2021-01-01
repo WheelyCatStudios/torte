@@ -2,16 +2,20 @@ name: activation
 
 on:
   pull_request: {}
+jobs:
+  activationRequest:
+    name: request activation file for github vms 
+    runs-on: ubuntu-latest
+    steps:
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: webbertakken/unity-request-manual-activation-file@v1.1
+        with:
+          unityVersion: 2019.4.14f1
 
-# Request manual activation file
-- name: Request manual activation file
-  id: getManualLicenseFile
-  uses: webbertakken/unity-request-manual-activation-file@v1.1
-  with:
-    unityVersion: 2019.4.14f1
-
-- name: Expose as artifact
-  uses: actions/upload-artifact@v1
-  with:
-    name: ${{ steps.getManualLicenseFile.outputs.filePath }}
-    path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
