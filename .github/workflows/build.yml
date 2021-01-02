@@ -34,6 +34,7 @@ jobs:
         uses: game-ci/unity-builder@v2.0-alpha-1 
         env:
           UNITY_STANDALONE_WIN: 1
+          UNITY_EDITOR_WIN: 1
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
