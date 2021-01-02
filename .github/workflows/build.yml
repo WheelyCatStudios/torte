@@ -31,7 +31,7 @@ jobs:
             Library-${{ matrix.projectPath }}-
             Library-
       - name: Build project
-        uses: game-ci/unity-builder@1.5 
+        uses: game-ci/unity-builder@v2.0-alpha-1 
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
