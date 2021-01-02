@@ -3,7 +3,7 @@ name: build
 on:
   pull_request:
     branches:
-      - dne 
+      - develop 
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
