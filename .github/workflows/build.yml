@@ -20,9 +20,12 @@ jobs:
         targetPlatform:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
     steps:
+        # Checkout
       - uses: actions/checkout@v2
         with:
           lfs: true
+          
+        # Cache
       - uses: actions/cache@v1.1.0
         with:
           path: ${{ matrix.projectPath }}/Library
@@ -30,6 +33,9 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
+        
+            
+        # build
       - name: Build project
         uses: game-ci/unity-builder@v2.0-alpha-1 
         env:
@@ -38,6 +44,8 @@ jobs:
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          
+          # output
       - uses: actions/upload-artifact@v1
         with:
           name: Build
