@@ -1,4 +1,4 @@
-﻿public partial class AkSoundEngine
+public partial class AkSoundEngine
 {
 #if UNITY_STANDALONE_LINUX && !UNITY_EDITOR
 	/// <summary>
@@ -12,3 +12,4 @@
 	}
 #endif
 }
+

@@ -1,10 +1,20 @@
 [System.Obsolete(AkSoundEngine.Deprecation_2019_2_0)]
 
+
+
 public class AkVertex
+
+
 
 {
 
+
+
 	private UnityEngine.Vector3 Vector = UnityEngine.Vector3.zero;
+
+
+
+
 
 
 
@@ -12,7 +22,15 @@ public class AkVertex
 
 
 
+
+
+
+
 	public float X { set { Vector.x = value; } get { return Vector.x; } }
+
+
+
+
 
 
 
@@ -20,7 +38,15 @@ public class AkVertex
 
 
 
+
+
+
+
 	public float Z { set { Vector.z = value; } get { return Vector.z; } }
+
+
+
+
 
 
 
@@ -28,7 +54,15 @@ public class AkVertex
 
 
 
+
+
+
+
 	public AkVertex() { }
+
+
+
+
 
 
 
@@ -36,7 +70,15 @@ public class AkVertex
 
 
 
+
+
+
+
 	public void Clear() { Vector.Set(0, 0, 0); }
+
+
+
+
 
 
 
@@ -44,21 +86,43 @@ public class AkVertex
 
 
 
+
+
+
+
 	public void Clone(AkVertex other) { Vector = other.Vector; }
+
+
 
 }
 
 
 
+
+
+
+
 [System.Obsolete(AkSoundEngine.Deprecation_2019_2_0)]
+
+
 
 /// AkVertexArray is now deprecated. Users should instead use UnityEngine.Vector3[].
 
+
+
 public class AkVertexArray : AkBaseArray<AkVertex>
+
+
 
 {
 
+
+
 	public AkVertexArray(int count) : base(count) {}
+
+
+
+
 
 
 
@@ -66,10 +130,22 @@ public class AkVertexArray : AkBaseArray<AkVertex>
 
 
 
+
+
+
+
 	protected override AkVertex CreateNewReferenceFromIntPtr(System.IntPtr address) { return null; }
+
+
+
+
 
 
 
 	protected override void CloneIntoReferenceFromIntPtr(System.IntPtr address, AkVertex other) {}
 
+
+
 }
+
+

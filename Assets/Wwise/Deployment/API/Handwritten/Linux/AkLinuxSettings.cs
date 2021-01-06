@@ -1,4 +1,4 @@
-﻿#if UNITY_STANDALONE_LINUX && !UNITY_EDITOR
+#if UNITY_STANDALONE_LINUX && !UNITY_EDITOR
 public partial class AkCommonUserSettings
 {
 	partial void SetSampleRate(AkPlatformInitSettings settings)
@@ -6,6 +6,7 @@ public partial class AkCommonUserSettings
 		settings.uSampleRate = m_SampleRate;
 	}
 }
+
 #endif
 
 public class AkLinuxSettings : AkWwiseInitializationSettings.CommonPlatformSettings
@@ -18,3 +19,4 @@ public class AkLinuxSettings : AkWwiseInitializationSettings.CommonPlatformSetti
 	}
 #endif // UNITY_EDITOR
 }
+

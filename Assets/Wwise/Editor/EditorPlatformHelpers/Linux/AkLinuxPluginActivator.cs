@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 [UnityEditor.InitializeOnLoad]
 public class AkLinuxPluginActivator
 {
