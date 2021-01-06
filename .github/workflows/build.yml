@@ -20,7 +20,7 @@ jobs:
         unityVersion:
           - 2019.4.16f1
         targetPlatform:
-          - StandaloneOSX # Build macOS 64-bit standalone.
+          - StandaloneWindows64 # Build windows 64-bit standalone.
     steps:
     
         # Checkout
@@ -29,13 +29,13 @@ jobs:
           lfs: true
           
         # Cache
-      - uses: actions/cache@v1.1.0
-        with:
-          path: ${{ matrix.projectPath }}/Library
-          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
-          restore-keys: |
-            Library-${{ matrix.projectPath }}-
-            Library-
+        #- uses: actions/cache@v1.1.0
+        #with:
+        #  path: ${{ matrix.projectPath }}/Library
+        #  key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+        #  restore-keys: |
+        #    Library-${{ matrix.projectPath }}-
+        #    Library-
             
         #libSDL2 for Wwise integration
         #      - name: install libSDL2
@@ -53,9 +53,6 @@ jobs:
         # build
       - name: Build project
         uses: game-ci/unity-builder@v2.0-alpha-6
-        env:
-          UNITY_STANDALONE_WIN: 1
-          UNITY_EDITOR_WIN: 1
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
