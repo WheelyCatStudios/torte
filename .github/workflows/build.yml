@@ -37,7 +37,7 @@ jobs:
             
         # build
       - name: Build project
-        uses: game-ci/unity-builder@v2.0-alpha-1
+        uses: game-ci/unity-builder@v2.0-alpha-6
         env:
           UNITY_STANDALONE_WIN: 1
           UNITY_EDITOR_WIN: 1
