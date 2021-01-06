@@ -34,6 +34,17 @@ jobs:
             Library-${{ matrix.projectPath }}-
             Library-
         
+        #pre-build checks
+      - name: Install libSDL2
+        run:
+          sudo apt-get install build-essential libasound2-dev
+          wget http://www.libsdl.org/release/SDL2-2.0.3.tar.gz
+          tar -zxvf SDL2-2.0.3.tar.gz
+          cd SDL2-2.0.3
+          ./configure
+          make
+          sudo make install
+          sudo ldconfig
             
         # build
       - name: Build project
