@@ -37,6 +37,19 @@ jobs:
             Library-${{ matrix.projectPath }}-
             Library-
             
+        #libSDL2 for Wwise integration
+      - name: install libSDL2
+        run: |
+          sudo apt-get install build-essential libasound2-dev
+          wget http://www.libsdl.org/release/SDL2-2.0.3.tar.gz
+          tar -zxvf SDL2-2.0.3.tar.gz
+          cd SDL2-2.0.3
+          ./configure
+          make
+          sudo make install
+          sudo ldconfig
+
+            
         # build
       - name: Build project
         uses: game-ci/unity-builder@v2.0-alpha-6
@@ -46,6 +59,7 @@ jobs:
         with:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          allowDirtyBuild: true
           
           # output
       - uses: actions/upload-artifact@v1
