@@ -29,25 +29,13 @@ jobs:
           lfs: true
           
         # Cache
-        #- uses: actions/cache@v1.1.0
-        #with:
-        #  path: ${{ matrix.projectPath }}/Library
-        #  key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
-        #  restore-keys: |
-        #    Library-${{ matrix.projectPath }}-
-        #    Library-
-            
-        #libSDL2 for Wwise integration
-        #      - name: install libSDL2
-      #run: |
-      #   sudo apt-get install build-essential libasound2-dev
-      #   wget http://www.libsdl.org/release/SDL2-2.0.3.tar.gz
-      #   tar -zxvf SDL2-2.0.3.tar.gz
-      #   cd SDL2-2.0.3
-      #   ./configure
-      #   make
-      #   sudo make install
-      #   sudo ldconfig
+      - uses: actions/cache@v1.1.0
+      with:
+        path: ${{ matrix.projectPath }}/Library
+        key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+        restore-keys: |
+          Library-${{ matrix.projectPath }}-
+          Library-
 
             
         # build
