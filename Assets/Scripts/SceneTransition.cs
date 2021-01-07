@@ -11,6 +11,9 @@ public class SceneTransition : MonoBehaviour
     private Rigidbody2D playerRb;
     private float distance;
 
+    private AsyncOperation asyncLoad;
+    private bool isLoadingAsync = false;
+
 
 
     
@@ -24,25 +27,28 @@ public class SceneTransition : MonoBehaviour
     void LateUpdate() {
         
         distance = playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance; // Calucates distance to trigger
-        if (distance < approachThreshold)
+        if (distance < approachThreshold & !isLoadingAsync)
         {
-            StartCoroutine(LoadSceneAsync());
+            asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+            asyncLoad.allowSceneActivation = false;
+            isLoadingAsync = true;
         }
     }
 
 
-    /*void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(sceneName);
         }
-    }*/
+    }
 
-    IEnumerator LoadSceneAsync()
+    /*IEnumerator LoadSceneAsync()
     {
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)
@@ -50,6 +56,6 @@ public class SceneTransition : MonoBehaviour
             Debug.Log(asyncLoad.progress);
             yield return null;
         }
-    }
+    }*/
     
 }
