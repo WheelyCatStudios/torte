@@ -30,12 +30,12 @@ jobs:
           
         # Cache
       - uses: actions/cache@v1.1.0
-      with:
-        path: ${{ matrix.projectPath }}/Library
-        key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
-        restore-keys: |
-          Library-${{ matrix.projectPath }}-
-          Library-
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-${{ matrix.projectPath }}-
+            Library-
 
             
         # build
