@@ -8,7 +8,7 @@ public class SceneTransition : MonoBehaviour
     public string sceneName; //Required Field; Case Sensitve; Please use full path instead of name
     public float approachThreshold = 10f;
     private float departThreshold;
-    private Vector2 direction;
+    private Rigidbody2D playerRb;
     private float distance;
 
 
@@ -18,11 +18,13 @@ public class SceneTransition : MonoBehaviour
     void Start()
     {
         departThreshold = approachThreshold * 1.5f;
-        direction = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().velocity; //Grab velocity of player and set a Vector2
+        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
     }
 
     void LateUpdate() {
-        //distance = Vector2.Distance(direction, )    
+        
+        distance = playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance;
+        Debug.Log(distance);  
     }
 
 
@@ -33,4 +35,10 @@ public class SceneTransition : MonoBehaviour
             SceneManager.LoadScene(sceneName);
         }
     }
+
+    /*private void float CalcDistanceToTrigger()
+    {
+        return playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance;
+    }*/
+    
 }
