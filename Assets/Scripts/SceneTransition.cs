@@ -14,6 +14,8 @@ public class SceneTransition : MonoBehaviour
     private AsyncOperation asyncLoad;
     private bool isLoadingAsync = false;
 
+    private AsyncOperation asyncUnload;
+
 
 
     
@@ -32,6 +34,13 @@ public class SceneTransition : MonoBehaviour
             asyncLoad = SceneManager.LoadSceneAsync(sceneName);
             asyncLoad.allowSceneActivation = false;
             isLoadingAsync = true;
+            Debug.Log("Loading");
+        }
+        if (distance > departThreshold & isLoadingAsync)
+        {
+            asyncUnload = SceneManager.UnloadSceneAsync(sceneName);
+            isLoadingAsync = false;
+            Debug.Log("Unloading");
         }
     }
 
