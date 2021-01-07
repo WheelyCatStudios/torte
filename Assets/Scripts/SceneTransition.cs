@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour
 {
     public string sceneName; //Required Field; Case Sensitve; Please use full path instead of name
-    public float approachThreshold = 10f;
+    public float approachThreshold = 5f;
     private float departThreshold;
     private Rigidbody2D playerRb;
     private float distance;
@@ -23,22 +23,33 @@ public class SceneTransition : MonoBehaviour
 
     void LateUpdate() {
         
-        distance = playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance;
-        Debug.Log(distance);  
+        distance = playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance; // Calucates distance to trigger
+        if (distance < approachThreshold)
+        {
+            StartCoroutine(LoadSceneAsync());
+        }
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    /*void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(sceneName);
         }
-    }
-
-    /*private void float CalcDistanceToTrigger()
-    {
-        return playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance;
     }*/
+
+    IEnumerator LoadSceneAsync()
+    {
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log(asyncLoad.progress);
+            yield return null;
+        }
+    }
     
 }
