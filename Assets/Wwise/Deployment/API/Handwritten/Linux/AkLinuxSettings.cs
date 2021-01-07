@@ -1,4 +1,4 @@
-#if UNITY_STANDALONE_LINUX && !UNITY_EDITOR || UNITY_EDITOR_LINUX
+#if UNITY_STANDALONE_LINUX && !UNITY_EDITOR
 public partial class AkCommonUserSettings
 {
 	partial void SetSampleRate(AkPlatformInitSettings settings)
