@@ -1,6 +1,6 @@
 public partial class AkSoundEngine
 {
-#if UNITY_STANDALONE_LINUX && !UNITY_EDITOR
+#if (UNITY_STANDALONE_LINUX && !UNITY_EDITOR) || UNITY_EDITOR_LINUX
 	/// <summary>
 	///     Converts "AkOSChar*" C-strings to C# strings.
 	/// </summary>
