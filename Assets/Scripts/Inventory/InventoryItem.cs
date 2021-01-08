@@ -46,9 +46,9 @@ namespace InventorySystem
             return null;
         }
 
-        #region properties
+        #region attributes
 
-        #region default properties
+        #region defaults
         private const string _defaultItemName = "doo-dad";
         private const string _defaultItemDescription = "This sure is neat, but also usless...";
 
@@ -82,10 +82,17 @@ namespace InventorySystem
         //private function _itemEffect;
         #endregion
 
+        #region properties
         public string ItemName { get => _itemName; }
         public string ItemDescription { get => _itemDescription; }
 
         public int ItemValue { get => _itemValue; }
+        
+        public bool ItemUsable { get => _itemUseable; }
+        public bool ItemRemovable { get => _itemRemovable; }
+        public bool ItemDestroyable { get => _itemDestroyable; }
+        #endregion
+
         #endregion
     }
 }
