@@ -1,5 +1,5 @@
-using System;
-using System.IO;
+//using System;
+//using System.IO;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -43,29 +43,29 @@ namespace InventorySystem
         private void OnGotPic(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Sprite> pic) { _picture = pic.Result; }
         private void OnGotSprite(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<Sprite> sprite) { _sprite = sprite.Result; }
 
-        private Sprite SpriteFromFile(string filepath)
-        {
-            Sprite r;
-            Texture2D spriteTexture = TextureFromFile(filepath);
-            r = Sprite.Create(spriteTexture, new Rect(0, 0, spriteTexture.width, spriteTexture.height), Vector2.zero);
+        //private Sprite SpriteFromFile(string filepath)
+        //{
+        //    Sprite r;
+        //    Texture2D spriteTexture = TextureFromFile(filepath);
+        //    r = Sprite.Create(spriteTexture, new Rect(0, 0, spriteTexture.width, spriteTexture.height), Vector2.zero);
 
-            return r;
-        }
-        private Texture2D TextureFromFile(string filepath)
-        {
-            Texture2D texture;
-            byte[] FileData;
+        //    return r;
+        //}
+        //private Texture2D TextureFromFile(string filepath)
+        //{
+        //    Texture2D texture;
+        //    byte[] FileData;
 
-            if (File.Exists(filepath))
-            {
-                FileData = File.ReadAllBytes(filepath);
-                texture = new Texture2D(6, 9);
-                if (texture.LoadImage(FileData))
-                    return texture;
-            }
-            Debug.LogWarning($"Failed to load texture from file {filepath}. Check that file location is corrct and file is not corrupted.");
-            return null;
-        }
+        //    if (File.Exists(filepath))
+        //    {
+        //        FileData = File.ReadAllBytes(filepath);
+        //        texture = new Texture2D(6, 9);
+        //        if (texture.LoadImage(FileData))
+        //            return texture;
+        //    }
+        //    Debug.LogWarning($"Failed to load texture from file {filepath}. Check that file location is corrct and file is not corrupted.");
+        //    return null;
+        //}
 
         #region attributes
 
