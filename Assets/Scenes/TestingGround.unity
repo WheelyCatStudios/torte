@@ -149,7 +149,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.1004405}
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Assets/Scenes/TransitionScene.unity
   approachThreshold: 5
+  canTransition: 0
 --- !u!1 &332409031
 GameObject:
   m_ObjectHideFlags: 0

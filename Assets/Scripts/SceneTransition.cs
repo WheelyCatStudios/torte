@@ -54,6 +54,14 @@ public class SceneTransition : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") & canTransition)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+    }
+
     /*IEnumerator LoadSceneAsync()
     {
 
