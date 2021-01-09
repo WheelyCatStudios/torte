@@ -7,6 +7,7 @@ public class SceneTransition : MonoBehaviour
 {
     public string sceneName; //Required Field; Case Sensitve; Please use full path instead of name
     public float approachThreshold = 5f;
+    public bool canTransition = true;
     private float departThreshold;
     private Rigidbody2D playerRb;
     private float distance;
@@ -47,7 +48,7 @@ public class SceneTransition : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") & canTransition)
         {
             SceneManager.LoadScene(sceneName);
         }
