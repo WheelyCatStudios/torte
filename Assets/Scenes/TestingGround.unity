@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Assets/Scenes/TransitionScene.unity
   approachThreshold: 5
-  canTransition: 0
+  canTransition: 1
 --- !u!1 &332409031
 GameObject:
   m_ObjectHideFlags: 0

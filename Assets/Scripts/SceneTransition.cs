@@ -35,13 +35,13 @@ public class SceneTransition : MonoBehaviour
             asyncLoad = SceneManager.LoadSceneAsync(sceneName);
             asyncLoad.allowSceneActivation = false;
             isLoadingAsync = true;
-            Debug.Log("Loading");
+            Debug.Log("Loading"); //TODO: Remove
         }
         if (distance > departThreshold & isLoadingAsync)
         {
-            asyncUnload = SceneManager.UnloadSceneAsync(sceneName);
+            asyncUnload = SceneManager.UnloadSceneAsync(sceneName); //TODO: Fix asyncUnload
             isLoadingAsync = false;
-            Debug.Log("Unloading");
+            Debug.Log("Unloading"); //TODO: Remove
         }
     }
 
