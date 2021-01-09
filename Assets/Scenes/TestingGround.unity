@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4fd6fd40c20f74292d3da612389979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Assets/Scenes/TransitionScene.unity
+  sceneName: Assets/Scenes/TestingGround.unity
   approachThreshold: 5
   canTransition: 1
 --- !u!1 &332409031
