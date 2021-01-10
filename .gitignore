@@ -73,3 +73,5 @@ Assets/WwiseSettings.xml.meta
 .DS_Store
 ph.meta
 ph
+/Assets/Wwise/**/*.meta
+Assets/Wwise.meta
