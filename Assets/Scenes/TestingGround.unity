@@ -34421,11 +34421,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885158947}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cff9d40bfcbe8d439841deb79f10a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1885158949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885158947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a424359b00cb0a42a2ce537eff439a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryScreen: {fileID: 8720944089857959671, guid: 1595ebe17afe52547ac60a5bfcbee165,
-    type: 3}
 --- !u!1 &2009585133
 GameObject:
   m_ObjectHideFlags: 0

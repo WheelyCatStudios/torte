@@ -118,7 +118,6 @@ public class EntityMovementScript : MonoBehaviour
     /// <summary>
     /// MonoBehaviour framely update
     /// </summary>
-    // void Update() =>
 
     private void FixedUpdate() => Move(direction);
 

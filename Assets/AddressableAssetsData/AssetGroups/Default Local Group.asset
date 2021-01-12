@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: e16a3c4ba9ed9564b9061f7eed94fade
-    m_Address: Assets/Settings/InputMaster.inputactions
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8ef6c1d5f712383469f38b5f59541cda, type: 2}
   m_SchemaSet:

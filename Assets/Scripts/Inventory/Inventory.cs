@@ -12,6 +12,7 @@ namespace InventorySystem {
         /// <summary>
         /// This is a list of InventoryItem objects (AKA an inventory).
         /// </summary>
+        [SerializeField]
         private List<InventoryItem> _inventory = new List<InventoryItem>();
 
         /// <summary>
