@@ -88,6 +88,12 @@ namespace InventorySystem
                 UnityEngine.UI.Image _itemImage = _tempRectTrasform.gameObject.AddComponent<UnityEngine.UI.Image>();
                 _itemImage.sprite = inventory.InventoryItems[i].Icon;
 
+				//item text
+				GameObject _label = new GameObject("Label");
+                _tempRectTrasform = _label.AddComponent<RectTransform>();
+				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _mainTransform.sizeDelta.x , new Vector2(_elementHeight * 3, 0-(_elementHeight/2)), false, Vector2.up, Vector2.up);
+				createTMP(_label, inventory.InventoryItems[i].Name);
+
                 _elementStack += _elementHeight;
             }
 
