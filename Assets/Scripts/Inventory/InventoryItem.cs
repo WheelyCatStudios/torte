@@ -1,4 +1,4 @@
-//using System;
+using System;
 //using System.IO;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -8,6 +8,7 @@ using UnityEngine.AddressableAssets;
 /// </summary>
 namespace InventorySystem
 {
+    [Serializable]
     public class InventoryItem{
 
         public InventoryItem(
@@ -88,22 +89,31 @@ namespace InventorySystem
         #endregion
 
         #region fields
+        [SerializeField]
         private string _name;
+        [SerializeField]
         private string _description;
 
+        [SerializeField]
         private int _value;
+        [SerializeField]
         private int _uses;
 
         //private string _iconLocation;
         //private string _pictureLocation;
         //private string _spriteLocation;
 
+        [SerializeField]
         private Sprite _icon;
+        [SerializeField]
         private Sprite _picture;
+        [SerializeField]
         private Sprite _sprite;
 
         private bool _useable;
+        [SerializeField]
         private bool _removable;
+        [SerializeField]
         private bool _destroyable;
 
         //private function _Effect;

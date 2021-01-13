@@ -15,6 +15,12 @@ namespace InventorySystem {
         [SerializeField]
         private List<InventoryItem> _inventory = new List<InventoryItem>();
 
+        public List<InventoryItem> InventoryItems
+        {
+            get => _inventory;
+            set => _inventory = value;
+        }
+
         /// <summary>
         /// Add an item to the inventory.
         /// </summary>
