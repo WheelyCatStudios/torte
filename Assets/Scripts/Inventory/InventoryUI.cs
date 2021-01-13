@@ -6,6 +6,7 @@ namespace InventorySystem
     public class InventoryUI
     {
 		private static readonly string MAIN_CAMERA_NAME = "Main Camera";
+		private static readonly string _MainCameraName = "Main Camera";
         private const string _defaultPopupMessage = "This is the default message.";
         private const int _previewTextLength = 5;
 		private static readonly float _UIWidth=8f, _UIHeight=10f;
@@ -133,7 +134,7 @@ namespace InventorySystem
 		/// </summary>
 		/// <param name="ui">The Inventory UI to place under the camera.</param>
 		private static void PlaceUnderCamera(GameObject ui){
-			PlaceUnderCamera(ui, MAIN_CAMERA_NAME);
+			PlaceUnderCamera(ui, _MainCameraName);
 		}
 		
 		/// <summary>
