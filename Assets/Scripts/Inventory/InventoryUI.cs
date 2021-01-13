@@ -8,15 +8,18 @@ namespace InventorySystem
 		private static readonly string MAIN_CAMERA_NAME = "Main Camera";
         private const string _defaultPopupMessage = "This is the default message.";
         private const int _previewTextLength = 5;
+		private static readonly float _UIWidth=8f, _UIHeight=10f;
+		private static readonly Color _UIBGColor = new Color(0, 0, 0, 0.9f);
+
         public static void MakePopUp() { MakePopUp(_defaultPopupMessage); }
         public static void MakePopUp(string message) { MakePopUp(new string[1] { message}); }
         public static void MakePopUp(string[] messages)
         {
-            float _UIWidth=8f, _UIHeight=10f;
-            Color _UIBGColor = new Color(0, 0, 0, 0.9f);
+
             GameObject _inventoryUI = new GameObject("_InventoryUI"); //create empty
             RectTransform _tempRectTrasform = _inventoryUI.AddComponent<RectTransform>(); //Size this bitch up
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
+            
+			_tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
             _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
             _inventoryUI.AddComponent<Canvas>(); //UI stuff
             _inventoryUI.AddComponent<CanvasRenderer>();
