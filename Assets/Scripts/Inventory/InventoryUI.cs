@@ -5,7 +5,7 @@ namespace InventorySystem
 {
     public class InventoryUI
     {
-		private static readonly string MAIN_CAMERA_NAME = "Main Camera";
+		public static readonly string _UITitle = "Inventory";
 		private static readonly string _MainCameraName = "Main Camera";
         private const string _defaultPopupMessage = "This is the default message.";
         private const int _previewTextLength = 5;
@@ -51,7 +51,7 @@ namespace InventorySystem
 
         private static void GenerateInventoryPopUp(Inventory inventory)
         {
-            string _UITitle = "Inventory";
+
             GameObject _inventoryUI = MakePopUp(_UITitle);
 			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
             
@@ -59,8 +59,6 @@ namespace InventorySystem
             float _elementStack = 0, _elementHeight = 2;
             GameObject _tempObj = new GameObject();
             _elementStack += _elementHeight;
-
-            //Body
 
             //Scroll Rect
             GameObject _scroller = new GameObject("Scroller");
