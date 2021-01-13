@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 
 namespace InventorySystem
 {
     public class InventoryUI
     {
+		private static readonly string MAIN_CAMERA_NAME = "Main Camera";
         private const string _defaultPopupMessage = "This is the default message.";
         private const int _previewTextLength = 5;
         public static void MakePopUp() { MakePopUp(_defaultPopupMessage); }
@@ -143,8 +144,52 @@ namespace InventorySystem
             _inventoryUI.AddComponent<UnityEngine.EventSystems.EventSystem>();
             _inventoryUI.AddComponent<UnityEngine.EventSystems.BaseInput>();
             _inventoryUI.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
-
+			PlaceUnderCamera(_inventoryUI);
         }
+		#region utility
+		/// <summary>
+		/// Places the provided ui under the main camera.<br>
+		/// Locates the main camera by name, assuming it is "Main Camera".
+		/// <br/>
+		/// This could be abstracted to some kind of utilities class.
+		/// </summary>
+		/// <param name="ui">The Inventory UI to place under the camera.</param>
+		private static void PlaceUnderCamera(GameObject ui){
+			PlaceUnderCamera(ui, MAIN_CAMERA_NAME);
+		}
+		
+		/// <summary>
+		/// Places the provided ui under the main camera.<br/>
+		/// Locates the camera game object using the name provided.
+		/// <br/>
+		/// This could be abstracted to some kind of utilities class
+		/// <br/>
+		/// <span>
+		/// 	uses 
+		/// 	<seealso cref="GameObject.Find(string)"/>
+		/// </span>
+		/// </summary>
+		/// <param name="ui">The Inventory UI to place under the camera.</param>
+		private static void PlaceUnderCamera(GameObject ui, string CameraName){
+			PlaceUnderCamera(ui, GameObject.Find(CameraName));
+		}
+
+		/// <summary>
+		/// Places the provided ui under the main camera.<br/>
+		/// Directly defines the child/parent relationship between the 
+		/// provided inventory UI and camera objects
+		/// <br/>
+		/// This could be abstracted to some kind of utilities class
+		/// <br/>
+		/// <span>
+		/// 	uses 
+		/// 	<seealso cref="Transform.SetParent(Transform)"/>
+		/// </span>
+		/// </summary>
+		/// <param name="ui">The Inventory UI to place under the camera.</param>
+		private static void PlaceUnderCamera(GameObject ui, GameObject camera){
+			ui.transform.SetParent(camera.transform);
+		}
 
         public static void OpenInventory(Inventory targetInventory)
         {
@@ -155,5 +200,6 @@ namespace InventorySystem
             //MakePopUp(new string[2]{ "This is a test","this is another fucking test"});
             //I have no fucking clue
         }
+		#endregion utility
     }
 }
