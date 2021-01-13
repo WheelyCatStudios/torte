@@ -5,13 +5,15 @@ namespace InventorySystem
 {
     public class InventoryUI
     {
-		public static readonly string _InventoryObjectName = "_inventoryUI";
+		public static readonly Vector3 _UIScale = new Vector3(2,2,1);
+		private static readonly float _UIWidth=40f, _UIHeight=35f;
+		
 		public static readonly string _UITitle = "Inventory";
+		public static readonly string _InventoryObjectName = "_inventoryUI";
 		private static readonly string _MainCameraName = "Main Camera";
         private const string _defaultPopupMessage = "This is the default message.";
 		private const string _defaultPopupName = "NewPopUpObj";
         private const int _previewTextLength = 5;
-		private static readonly float _UIWidth=8f, _UIHeight=10f;
 		private static readonly Color _UIBGColor = new Color(0, 0, 0, 0.9f);
 
 		public static GameObject MakePopUp() => MakePopUp(_defaultPopupName);
@@ -23,6 +25,7 @@ namespace InventorySystem
             RectTransform _tempRectTrasform = _inventoryUI.AddComponent<RectTransform>(); //Size this bitch up
 			_tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
             _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
+			
 			SetAnchoredChild(_tempRectTrasform, GameObject.Find(_MainCameraName), _UIHeight, _UIWidth, Vector2.zero);
             _inventoryUI.AddComponent<Canvas>().sortingOrder = 1; //UI stuff
             _inventoryUI.AddComponent<CanvasRenderer>();
@@ -111,6 +114,7 @@ namespace InventorySystem
             _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, verticalSize);
             _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, horizontalSize);
             _rectTransform.anchoredPosition = _anchorPos;
+			_rectTransform.localScale = _UIScale;
 		}
 
 		/// <summary>
