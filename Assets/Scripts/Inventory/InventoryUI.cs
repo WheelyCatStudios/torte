@@ -5,20 +5,22 @@ namespace InventorySystem
 {
     public class InventoryUI
     {
+		public static readonly string _InventoryObjectName = "_inventoryUI";
 		public static readonly string _UITitle = "Inventory";
 		private static readonly string _MainCameraName = "Main Camera";
         private const string _defaultPopupMessage = "This is the default message.";
+		private const string _defaultPopupName = "NewPopUpObj";
         private const int _previewTextLength = 5;
 		private static readonly float _UIWidth=8f, _UIHeight=10f;
 		private static readonly Color _UIBGColor = new Color(0, 0, 0, 0.9f);
 
-        public static GameObject MakePopUp() => MakePopUp(_defaultPopupMessage);
-        public static GameObject MakePopUp(string message) => MakePopUp(new string[1] {message});
-        public static GameObject MakePopUp(string[] messages)
+		public static GameObject MakePopUp() => MakePopUp(_defaultPopupName);
+        public static GameObject MakePopUp(string objName) => MakePopUp(objName, _defaultPopupMessage);
+        public static GameObject MakePopUp(string objName, string message) => MakePopUp(objName, new string[1] {message});
+        public static GameObject MakePopUp(string objName, string[] messages)
         {
-            GameObject _inventoryUI = new GameObject("_InventoryUI"); //create empty
+            GameObject _inventoryUI = new GameObject(objName); //create empty
             RectTransform _tempRectTrasform = _inventoryUI.AddComponent<RectTransform>(); //Size this bitch up
-            
 			_tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
             _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
 			SetAnchoredChild(_tempRectTrasform, GameObject.Find(_MainCameraName), _UIHeight, _UIWidth, Vector2.zero);
@@ -48,7 +50,7 @@ namespace InventorySystem
         private static void GenerateInventoryPopUp(Inventory inventory)
         {
 
-            GameObject _inventoryUI = MakePopUp(_UITitle);
+            GameObject _inventoryUI = MakePopUp(_InventoryObjectName, _UITitle);
 			GameObject _tempObj = new GameObject("[temp obj]");
 			_tempObj.transform.SetParent(_inventoryUI.transform);
 			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
@@ -101,7 +103,6 @@ namespace InventorySystem
 		#region utility
 		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos) => 
 		SetAnchoredChild( _rectTransform, _parent, verticalSize, horizontalSize, _anchorPos, Vector2.up, Vector2.one);
-
 
 		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos, Vector2 min, Vector2 max){
             _rectTransform.SetParent(_parent.transform);
