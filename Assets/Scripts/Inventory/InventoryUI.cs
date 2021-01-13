@@ -62,7 +62,7 @@ namespace InventorySystem
             //Scroll Rect
             GameObject _scroller = new GameObject("Scroller");
             _tempRectTrasform = _scroller.AddComponent<RectTransform>();
-			SetAnchoredChild(_tempRectTrasform, _inventoryUI, (_UIHeight-_elementStack), _UIWidth, new Vector2(0, 0 - (_elementStack + ((_UIHeight - _elementStack) / 2))));
+			SetAnchoredChild(_tempRectTrasform, _inventoryUI, (_UIHeight-_elementStack), _UIWidth, new Vector2(0, 0 - (_elementStack + ((_UIHeight - _elementStack) / 2))), false);
 
             UnityEngine.UI.ScrollRect _scrollRect = _scroller.AddComponent<UnityEngine.UI.ScrollRect>();
             _scroller.AddComponent<CanvasRenderer>();
@@ -73,7 +73,7 @@ namespace InventorySystem
             GameObject _scrollContainer = new GameObject("Scroll Container");
             _tempRectTrasform = _scrollContainer.AddComponent<RectTransform>();
 
-            SetAnchoredChild(_tempRectTrasform, _scroller, _UIWidth, (inventory.InventoryItems.Count * _elementHeight), Vector2.zero);
+            SetAnchoredChild(_tempRectTrasform, _scroller, _UIWidth, (inventory.InventoryItems.Count * _elementHeight), Vector2.zero, false);
         
 			_elementStack = 0;
 
@@ -83,12 +83,11 @@ namespace InventorySystem
                 //Item container
                 _tempObj = new GameObject($"Item: {inventory.InventoryItems[i].Name}");
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
-				SetAnchoredChild(_tempRectTrasform, _scrollContainer, _elementHeight, _UIWidth, new Vector2(0, 0 - (_elementStack + (_elementHeight / 2))));
+				SetAnchoredChild(_tempRectTrasform, _scrollContainer, _elementHeight, _UIWidth, new Vector2(0, 0 - (_elementStack + (_elementHeight / 2))), false);
 
                 //item icon
-                _tempRectTrasform = new GameObject($"Icon: {inventory.InventoryItems[i].Name}").AddComponent<RectTransform>();
-				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _elementHeight, new Vector2(_elementHeight/2,0-(_elementHeight/2)), Vector2.up, Vector2.up);
-
+                _tempRectTrasform = new GameObject("Icon").AddComponent<RectTransform>();
+				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _elementHeight, new Vector2(_elementHeight/2,0-(_elementHeight/2)), false, Vector2.up, Vector2.up);
                 UnityEngine.UI.Image _itemImage = _tempRectTrasform.gameObject.AddComponent<UnityEngine.UI.Image>();
                 _itemImage.sprite = inventory.InventoryItems[i].Icon;
 
@@ -105,16 +104,22 @@ namespace InventorySystem
 
 		#region utility
 		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos) => 
-		SetAnchoredChild( _rectTransform, _parent, verticalSize, horizontalSize, _anchorPos, Vector2.up, Vector2.one);
+		SetAnchoredChild( _rectTransform, _parent, verticalSize, horizontalSize, _anchorPos, true);
 
-		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos, Vector2 min, Vector2 max){
+		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos, bool doScale) => 
+		SetAnchoredChild( _rectTransform, _parent, verticalSize, horizontalSize, _anchorPos, doScale, Vector2.up, Vector2.one);
+
+		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos, Vector2 min, Vector2 max) =>
+			SetAnchoredChild( _rectTransform, _parent, verticalSize, horizontalSize, _anchorPos, true,  min, max);
+
+		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos, bool doScale, Vector2 min, Vector2 max){
             _rectTransform.SetParent(_parent.transform);
             _rectTransform.anchorMin = min;
             _rectTransform.anchorMax = max;
             _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, verticalSize);
             _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, horizontalSize);
             _rectTransform.anchoredPosition = _anchorPos;
-			_rectTransform.localScale = _UIScale;
+			_rectTransform.localScale = (doScale) ? _UIScale : new Vector3(1,1,1);
 		}
 
 		/// <summary>
