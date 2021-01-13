@@ -32,12 +32,7 @@ namespace InventorySystem
                 GameObject _tempObj = new GameObject($"Text: {messages[i].Substring(0, _previewTextLength)}...");
                 _tempObj.AddComponent<CanvasRenderer>();
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
-                _tempRectTrasform.SetParent(_inventoryUI.transform);
-                _tempRectTrasform.anchorMin = Vector2.up;
-                _tempRectTrasform.anchorMax = Vector2.one;
-                _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _elementHeight);
-                _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
-                _tempRectTrasform.anchoredPosition = new Vector2(0,0-(_elementStack+(_elementHeight/2)));
+				SetAnchoredChild(_tempRectTrasform, _inventoryUI, _elementHeight, _UIWidth, new Vector2(0,0-(_elementStack+(_elementHeight/2))));
 
                 TextMeshProUGUI _tempTMP = _tempObj.AddComponent<TextMeshProUGUI>();
                 _tempTMP.text = messages[i];
@@ -53,23 +48,15 @@ namespace InventorySystem
         {
 
             GameObject _inventoryUI = MakePopUp(_UITitle);
-			GameObject _tempObj = new GameObject();
+			GameObject _tempObj = new GameObject("[temp obj]");
 			_tempObj.transform.SetParent(_inventoryUI.transform);
 			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
-            
-            //Header
             float _elementStack = 2, _elementHeight = 2;
             
-
             //Scroll Rect
             GameObject _scroller = new GameObject("Scroller");
             _tempRectTrasform = _scroller.AddComponent<RectTransform>();
-            _tempRectTrasform.SetParent(_inventoryUI.transform);
-            _tempRectTrasform.anchorMin = Vector2.up;
-            _tempRectTrasform.anchorMax = Vector2.one;
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (_UIHeight-_elementStack));
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
-            _tempRectTrasform.anchoredPosition = new Vector2(0, 0 - (_elementStack + ((_UIHeight - _elementStack) / 2)));
+			SetAnchoredChild(_tempRectTrasform, _inventoryUI, (_UIHeight-_elementStack), _UIWidth, new Vector2(0, 0 - (_elementStack + ((_UIHeight - _elementStack) / 2))));
 
             UnityEngine.UI.ScrollRect _scrollRect = _scroller.AddComponent<UnityEngine.UI.ScrollRect>();
             _scroller.AddComponent<CanvasRenderer>();
@@ -79,14 +66,10 @@ namespace InventorySystem
             //Scroll Container
             GameObject _scrollContainer = new GameObject("Scroll Container");
             _tempRectTrasform = _scrollContainer.AddComponent<RectTransform>();
-            _tempRectTrasform.SetParent(_scroller.transform);
-            _tempRectTrasform.anchorMin = Vector2.up;
-            _tempRectTrasform.anchorMax = Vector2.one;
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (inventory.InventoryItems.Count * _elementHeight));
-            _tempRectTrasform.anchoredPosition = Vector2.zero;
 
-            _elementStack = 0;
+            SetAnchoredChild(_tempRectTrasform, _scroller, _UIWidth, (inventory.InventoryItems.Count * _elementHeight), Vector2.zero);
+        
+			_elementStack = 0;
 
             //Items
             for(int i = 0; i!=inventory.InventoryItems.Count; i++)
@@ -94,21 +77,11 @@ namespace InventorySystem
                 //Item container
                 _tempObj = new GameObject($"Item: {inventory.InventoryItems[i].Name}");
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
-                _tempRectTrasform.SetParent(_scrollContainer.transform);
-                _tempRectTrasform.anchorMin = Vector2.up;
-                _tempRectTrasform.anchorMax = Vector2.one;
-                _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
-                _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _elementHeight);
-                _tempRectTrasform.anchoredPosition = new Vector2(0, 0 - (_elementStack + (_elementHeight / 2)));
+				SetAnchoredChild(_tempRectTrasform, _scrollContainer, _elementHeight, _UIWidth, new Vector2(0, 0 - (_elementStack + (_elementHeight / 2))));
 
                 //item icon
                 _tempRectTrasform = new GameObject($"Icon: {inventory.InventoryItems[i].Name}").AddComponent<RectTransform>();
-                _tempRectTrasform.SetParent(_tempObj.transform);
-                _tempRectTrasform.anchorMin = Vector2.up;
-                _tempRectTrasform.anchorMax = Vector2.up;
-                _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _elementHeight);
-                _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _elementHeight);
-                _tempRectTrasform.anchoredPosition = new Vector2(_elementHeight/2,0-(_elementHeight/2));
+				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _elementHeight, new Vector2(_elementHeight/2,0-(_elementHeight/2)), Vector2.up, Vector2.up);
 
                 UnityEngine.UI.Image _itemImage = _tempRectTrasform.gameObject.AddComponent<UnityEngine.UI.Image>();
                 _itemImage.sprite = inventory.InventoryItems[i].Icon;
@@ -125,6 +98,19 @@ namespace InventorySystem
         }
 
 		#region utility
+		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos) => 
+		SetAnchoredChild( _rectTransform, _parent, verticalSize, horizontalSize, _anchorPos, Vector2.up, Vector2.one);
+
+
+		private static void SetAnchoredChild(RectTransform _rectTransform, GameObject _parent, float verticalSize, float horizontalSize, Vector2 _anchorPos, Vector2 min, Vector2 max){
+            _rectTransform.SetParent(_parent.transform);
+            _rectTransform.anchorMin = min;
+            _rectTransform.anchorMax = max;
+            _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, verticalSize);
+            _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, horizontalSize);
+            _rectTransform.anchoredPosition = _anchorPos;
+		}
+
 		/// <summary>
 		/// Places the provided ui under the main camera.<br>
 		/// Locates the main camera by name, assuming it is "Main Camera".
