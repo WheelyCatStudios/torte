@@ -51,34 +51,12 @@ namespace InventorySystem
         private static void GenerateInventoryPopUp(Inventory inventory)
         {
             string _UITitle = "Inventory";
-            float _UIWidth = 8f, _UIHeight = 10f;
-            Color _UIBGColor = new Color(0, 0, 0, 0.9f);
-            GameObject _inventoryUI = new GameObject("_InventoryUI"); //create empty
-            RectTransform _tempRectTrasform = _inventoryUI.AddComponent<RectTransform>(); //Size this bitch up
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
-            _inventoryUI.AddComponent<Canvas>().sortingOrder = 1; //UI stuff
-            _inventoryUI.AddComponent<CanvasRenderer>();
-            _inventoryUI.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; //Color this bitch in
-
+            GameObject _inventoryUI = MakePopUp(_UITitle);
+			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
+            
             //Header
             float _elementStack = 0, _elementHeight = 2;
-            GameObject _tempObj = new GameObject($"Text: {_UITitle.Substring(0, _previewTextLength)}...");
-            _tempObj.AddComponent<CanvasRenderer>();
-            _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
-            _tempRectTrasform.SetParent(_inventoryUI.transform);
-            _tempRectTrasform.anchorMin = Vector2.up;
-            _tempRectTrasform.anchorMax = Vector2.one;
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _elementHeight);
-            _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
-            _tempRectTrasform.anchoredPosition = new Vector2(0, 0 - (_elementStack + (_elementHeight / 2)));
-
-            TextMeshProUGUI _tempTMP = _tempObj.AddComponent<TextMeshProUGUI>();
-            _tempTMP.text = _UITitle;
-            _tempTMP.alignment = TextAlignmentOptions.Center;
-            _tempTMP.fontSizeMin = 1;
-            _tempTMP.enableAutoSizing = true;
-
+            GameObject _tempObj = new GameObject();
             _elementStack += _elementHeight;
 
             //Body
@@ -145,6 +123,7 @@ namespace InventorySystem
             _inventoryUI.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
 			PlaceUnderCamera(_inventoryUI);
         }
+
 		#region utility
 		/// <summary>
 		/// Places the provided ui under the main camera.<br>
