@@ -40,11 +40,7 @@ namespace InventorySystem
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _inventoryUI, _elementHeight, _UIWidth, new Vector2(0,0-(_elementStack+(_elementHeight/2))));
 
-                TextMeshProUGUI _tempTMP = _tempObj.AddComponent<TextMeshProUGUI>();
-                _tempTMP.text = messages[i];
-                _tempTMP.alignment = TextAlignmentOptions.Center;
-                _tempTMP.fontSizeMin = 1;
-                _tempTMP.enableAutoSizing = true;
+				createTMP(_tempObj, messages[i]);
             }
                
             return _inventoryUI;
@@ -164,6 +160,15 @@ namespace InventorySystem
 		/// <param name="ui">The Inventory UI to place under the camera.</param>
 		private static void PlaceUnderCamera(GameObject ui, GameObject camera){
 			ui.transform.SetParent(camera.transform);
+		}
+
+		private static TextMeshProUGUI createTMP(GameObject go, string s){
+                TextMeshProUGUI _tempTMP = go.AddComponent<TextMeshProUGUI>();
+                _tempTMP.text = s;
+                _tempTMP.alignment = TextAlignmentOptions.Center;
+                _tempTMP.fontSizeMin = 1;
+                _tempTMP.enableAutoSizing = true;
+				return _tempTMP;
 		}
 
         public static void OpenInventory(Inventory targetInventory)
