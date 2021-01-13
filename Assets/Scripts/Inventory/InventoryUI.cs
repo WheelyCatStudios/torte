@@ -21,6 +21,7 @@ namespace InventorySystem
             
 			_tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
             _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
+			SetAnchoredChild(_tempRectTrasform, GameObject.Find(_MainCameraName), _UIHeight, _UIWidth, Vector2.zero);
             _inventoryUI.AddComponent<Canvas>().sortingOrder = 1; //UI stuff
             _inventoryUI.AddComponent<CanvasRenderer>();
             _inventoryUI.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; //Color this bitch in
@@ -94,7 +95,7 @@ namespace InventorySystem
             _inventoryUI.AddComponent<UnityEngine.EventSystems.EventSystem>();
             _inventoryUI.AddComponent<UnityEngine.EventSystems.BaseInput>();
             _inventoryUI.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
-			PlaceUnderCamera(_inventoryUI);
+
         }
 
 		#region utility
