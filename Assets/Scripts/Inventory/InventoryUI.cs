@@ -50,8 +50,8 @@ namespace InventorySystem
         {
 
             GameObject _inventoryUI = MakePopUp(_InventoryObjectName, _UITitle);
-			GameObject _tempObj = new GameObject("[temp obj]");
-			_tempObj.transform.SetParent(_inventoryUI.transform);
+			GameObject _tempObj;
+			RectTransform _mainTransform = _inventoryUI.GetComponent<RectTransform>();
 			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
             float _elementStack = 2, _elementHeight = 2;
             
