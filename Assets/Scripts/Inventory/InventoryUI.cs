@@ -11,11 +11,10 @@ namespace InventorySystem
 		private static readonly float _UIWidth=8f, _UIHeight=10f;
 		private static readonly Color _UIBGColor = new Color(0, 0, 0, 0.9f);
 
-        public static void MakePopUp() { MakePopUp(_defaultPopupMessage); }
-        public static void MakePopUp(string message) { MakePopUp(new string[1] { message}); }
+        public static void MakePopUp() => MakePopUp(_defaultPopupMessage);
+        public static void MakePopUp(string message) => MakePopUp(new string[1] {message});
         public static void MakePopUp(string[] messages)
         {
-
             GameObject _inventoryUI = new GameObject("_InventoryUI"); //create empty
             RectTransform _tempRectTrasform = _inventoryUI.AddComponent<RectTransform>(); //Size this bitch up
             
