@@ -52,7 +52,8 @@ namespace InventorySystem
             GameObject _inventoryUI = MakePopUp(_InventoryObjectName, _UITitle);
 			GameObject _tempObj;
 			RectTransform _mainTransform = _inventoryUI.GetComponent<RectTransform>();
-			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
+			RectTransform _tempRectTrasform = _mainTransform;
+			
             float _elementStack = 2, _elementHeight = 2;
             
             //Scroll Rect
