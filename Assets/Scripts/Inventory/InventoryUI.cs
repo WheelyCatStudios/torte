@@ -20,7 +20,7 @@ namespace InventorySystem
             
 			_tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
             _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
-            _inventoryUI.AddComponent<Canvas>(); //UI stuff
+            _inventoryUI.AddComponent<Canvas>().sortingOrder = 1; //UI stuff
             _inventoryUI.AddComponent<CanvasRenderer>();
             _inventoryUI.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; //Color this bitch in
 
