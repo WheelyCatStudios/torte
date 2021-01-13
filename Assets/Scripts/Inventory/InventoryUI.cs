@@ -56,9 +56,8 @@ namespace InventorySystem
 			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
             
             //Header
-            float _elementStack = 0, _elementHeight = 2;
+            float _elementStack = 2, _elementHeight = 2;
             GameObject _tempObj = new GameObject();
-            _elementStack += _elementHeight;
 
             //Scroll Rect
             GameObject _scroller = new GameObject("Scroller");
