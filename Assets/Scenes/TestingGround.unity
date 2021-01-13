@@ -34436,6 +34436,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a424359b00cb0a42a2ce537eff439a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventory: []
+--- !u!114 &1885158950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885158947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9130f3069f25ea5448830bf36270b660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  howManyDoYouWant: 20
+  whatDoYouWant:
+    _name: Flower
+    _description: It's nice, but it's useless.
+    _value: 1
+    _uses: 3
+    _icon: {fileID: 21300000, guid: b9bac1bb914a5764fb721cdbcf883145, type: 3}
+    _picture: {fileID: 21300000, guid: b9bac1bb914a5764fb721cdbcf883145, type: 3}
+    _sprite: {fileID: 21300000, guid: b9bac1bb914a5764fb721cdbcf883145, type: 3}
+    _removable: 0
+    _destroyable: 0
 --- !u!1 &2009585133
 GameObject:
   m_ObjectHideFlags: 0
