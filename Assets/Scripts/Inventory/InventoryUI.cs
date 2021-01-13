@@ -53,11 +53,13 @@ namespace InventorySystem
         {
 
             GameObject _inventoryUI = MakePopUp(_UITitle);
+			GameObject _tempObj = new GameObject();
+			_tempObj.transform.SetParent(_inventoryUI.transform);
 			RectTransform _tempRectTrasform = _inventoryUI.GetComponent<RectTransform>();
             
             //Header
             float _elementStack = 2, _elementHeight = 2;
-            GameObject _tempObj = new GameObject();
+            
 
             //Scroll Rect
             GameObject _scroller = new GameObject("Scroller");
