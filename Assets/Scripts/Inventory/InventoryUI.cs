@@ -3,18 +3,67 @@ using TMPro;
 
 namespace InventorySystem
 {
+	/// <summary>
+	/// Static utility class that creates a UI which displays and interacts
+	/// with a provided Inventory.
+	/// </summary>
     public class InventoryUI
     {
-		public static readonly Vector3 _UIScale = new Vector3(2,2,1);
-		private static readonly float _UIWidth=40f, _UIHeight=35f;
+		#region properies
+		/// <summary>
+		/// Controls the general scale of the UI.
+		/// <br/>
+		/// 1,1,1 = Render at the native size specified by <a cref="_UIWidth"/> and <a cref="_UIHeight"/><br/>
+		/// 2,2,1 = Render at two times the the native size specified by <a cref="_UIWidth"/> and <a cref="_UIHeight"/>
+		/// </summary>
+		public static readonly Vector3 _UIScale = new Vector3(1,1,1);
+
+		/// <summary>
+		/// Specifies the height / width of the Inventory UI.
+		/// <br/>
+		/// <see cref="RectTransform#SetSizeWithCurrentAnchors"/>
+		/// </summary>
+		private static readonly float _UIWidth=80f, _UIHeight=70f;
 		
-		public static readonly string _UITitle = "Inventory";
-		public static readonly string _InventoryObjectName = "_inventoryUI";
-		private static readonly string _MainCameraName = "Main Camera";
-        private const string _defaultPopupMessage = "This is the default message.";
-		private const string _defaultPopupName = "NewPopUpObj";
-        private const int _previewTextLength = 5;
+		/// <summary>
+		/// Background color of the inventory UI's background.
+		/// </summary>
 		private static readonly Color _UIBGColor = new Color(0, 0, 0, 0.9f);
+
+		/// <summary>
+		/// The title displayed within the inventory UI.
+		/// TODO is not localized
+		/// </summary>
+		public static readonly string _UITitle = "Inventory";
+
+		/// <summary>
+		/// The name given to the game object holding the UI.
+		/// </summary>
+		public static readonly string _InventoryObjectName = "_inventoryUI";
+
+		/// <summary>
+		/// The name of the camera to which the created UI will be placed under.
+		/// </summary>
+		private static readonly string _MainCameraName = "Main Camera";
+
+		/// <summary>
+		/// Fallback message for pop-ups with no provided message
+		/// </summary>
+        private const string _defaultPopupMessage = "No message...";
+
+		/// <summary>
+		/// The name given to pop up objects.
+		/// <br/>
+		/// Fallback name for pop-ups with no provided object name.
+		/// </summary>
+		private const string _defaultPopupName = "NewPopUpObj";
+
+		/// <summary>
+		/// The permitted length for TMP text within popups.<br/>
+		/// Text longer than this value will be cut with '...'
+		/// </summary>
+        private const int _previewTextLength = 5;
+		#endregion properties
 
 		public static GameObject MakePopUp() => MakePopUp(_defaultPopupName);
         public static GameObject MakePopUp(string objName) => MakePopUp(objName, _defaultPopupMessage);
