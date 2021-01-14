@@ -113,7 +113,7 @@ namespace InventorySystem
 			ScrollRect _scrollRect = _scroller.go.AddComponent<ScrollRect>(); 			// Add a scroll rect to the object.
 			_scroller.go.AddComponent<Mask>();											// Add a mask?
 
-			RectGO _scrollContainer = new RectGO("Scroll Container");					// Container to house the objects in the scroll pane.
+			RectGO _scrollContainer = new RectGO("Scroll Container", new Color(0,0,0,0.005f));					// Container to house the objects in the scroll pane.
 																						// Set as a child of the scroll pane.
 			SetAnchoredChild(_scrollContainer.rect, _scroller.go, _UIWidth, (inventory.InventoryItems.Count * _elementHeight), Vector2.zero, false);
 		
@@ -162,16 +162,21 @@ namespace InventorySystem
 			/// </summary>
 			public RectTransform rect;
 
-			public RectGO(string s, bool colorbg) 		=>	init(new GameObject(s), colorbg);
-			public RectGO(string s)						=>	init(new GameObject(s), false);
-			public RectGO(GameObject _go, bool colorbg)	=>	init(_go, colorbg);
-			public RectGO(GameObject _go) 				=>	init(_go, false);
+			public RectGO(string s, bool colorbg) 						=>	init(new GameObject(s), colorbg, _UIBGColor);
+			public RectGO(string s, Color bgcolor)						=>	init(new GameObject(s), bgcolor);
+			public RectGO(string s)										=>	init(new GameObject(s));
 
-			private void init(GameObject _go, bool colorbg){
+			public RectGO(GameObject _go, bool colorbg)					=>	init(_go, colorbg, _UIBGColor);
+			public RectGO(GameObject _go, Color bgcolor)				=>	init(_go, bgcolor);
+			public RectGO(GameObject _go) 								=>	init(_go);
+
+			private void init(GameObject _go) 							=> init(_go, false, _UIBGColor);
+			private void init(GameObject _go, Color bgcolor) 			=> init(_go, true, bgcolor);
+			private void init(GameObject _go, bool colorbg, Color bgcolor){
 				go = _go;
 				rect = go.AddComponent<RectTransform>();
-				go.AddComponent<CanvasRenderer>();												// Create a component to render our canvas.
-				if (colorbg) go.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; 		// Add a the background image, for now it's just a plain color.
+				go.AddComponent<CanvasRenderer>();											// Create a component to render our canvas.
+				if (colorbg) go.AddComponent<UnityEngine.UI.Image>().color = bgcolor; 		// Add a the background image, for now it's just a plain color.
 			}
 		}
 
