@@ -41,7 +41,7 @@ public class SceneTransition : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") & canTransition)
         {
-            hasLoad = false;
+            hasLoadAsync = false;
             SceneManager.LoadScene(sceneName);
         }
     }

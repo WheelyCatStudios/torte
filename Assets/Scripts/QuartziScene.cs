@@ -31,10 +31,6 @@ public class QuartziScene : MonoBehaviour
         {
             StartCoroutine(LoadSceneAsync());
         }
-        else if(sceneLoaded && distance > distanceThreshold * 1.5f)
-        {
-            goScene = false;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
