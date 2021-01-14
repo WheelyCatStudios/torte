@@ -81,15 +81,14 @@ namespace InventorySystem
             _inventoryUI.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; //Color this bitch in
 
             //GameObject _tempObj;
-            float _elementStack = 0, _elementHeight= 2;
-            for(int i = 0; i!= messages.Length; i++)
+            foreach(string message in messages)
             {
-                GameObject _tempObj = new GameObject($"Text: {messages[i].Substring(0, _previewTextLength)}...");
+                GameObject _tempObj = new GameObject($"Text: {message.Substring(0, _previewTextLength)}...");
                 _tempObj.AddComponent<CanvasRenderer>();
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _inventoryUI, _elementHeight, _UIWidth, new Vector2(0,0-(_elementStack+(_elementHeight/2))));
 
-				createTMP(_tempObj, messages[i]);
+				createTMP(_tempObj, message);
             }
                
             return _inventoryUI;
