@@ -13,9 +13,7 @@ public class SceneTransition : MonoBehaviour
     private float distance;
 
     private AsyncOperation asyncLoad;
-    private bool isLoadingAsync = false;
-
-    private AsyncOperation asyncUnload;
+    private bool hasLoadAsync = false;
 
 
 
@@ -30,12 +28,11 @@ public class SceneTransition : MonoBehaviour
     void LateUpdate() {
         
         distance = playerRb.Distance(gameObject.GetComponent<BoxCollider2D>()).distance; // Calucates distance to trigger
-        if (distance < approachThreshold & !isLoadingAsync)
+        if (distance < approachThreshold & !hasLoadAsync)
         {
             asyncLoad = SceneManager.LoadSceneAsync(sceneName);
             asyncLoad.allowSceneActivation = false;
-            isLoadingAsync = true;
-            Debug.Log("Loading"); //TODO: Remove
+            hasLoadAsync = true;
         }
     }
 
@@ -44,6 +41,7 @@ public class SceneTransition : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") & canTransition)
         {
+            hasLoad = false;
             SceneManager.LoadScene(sceneName);
         }
     }
