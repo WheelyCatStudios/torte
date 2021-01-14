@@ -84,7 +84,7 @@ namespace InventorySystem
             //GameObject _tempObj;
             foreach(string message in messages)
             {
-                GameObject _tempObj = new GameObject($"Text: {message.Substring(0, _previewTextLength)}...");
+                GameObject _tempObj = new GameObject($"Text: {message.Substring(0, _previewTextLength)}" + ((message.Length > _previewTextLength) ? "..." : ""));
                 _tempObj.AddComponent<CanvasRenderer>();
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _PopUpUI, _elementHeight, _UIWidth, new Vector2(0,0-(_elementStack+(_elementHeight/2))));
