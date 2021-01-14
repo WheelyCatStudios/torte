@@ -70,15 +70,16 @@ namespace InventorySystem
         public static GameObject MakePopUp(string objName, string message) => MakePopUp(objName, new string[1] {message});
         public static GameObject MakePopUp(string objName, string[] messages)
         {
-            GameObject _inventoryUI = new GameObject(objName); //create empty
+            GameObject _PopUpUI = new GameObject(objName); 											// Create UI object
             RectTransform _tempRectTrasform = _inventoryUI.AddComponent<RectTransform>(); //Size this bitch up
 			_tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _UIWidth);
             _tempRectTrasform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _UIHeight);
 			
 			SetAnchoredChild(_tempRectTrasform, GameObject.Find(_MainCameraName), _UIHeight, _UIWidth, Vector2.zero);
             _inventoryUI.AddComponent<Canvas>().sortingOrder = 1; //UI stuff
-            _inventoryUI.AddComponent<CanvasRenderer>();
-            _inventoryUI.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; //Color this bitch in
+			_PopUpUI.AddComponent<Canvas>().sortingOrder = 1; 										// Assign sorting order to render this UI above all other objects // TODO this should be a const
+            _PopUpUI.AddComponent<CanvasRenderer>();												// Create a component to render our canvas.
+            _PopUpUI.AddComponent<UnityEngine.UI.Image>().color = _UIBGColor; 						// Add a the background image, for now it's just a plain color.
 
             //GameObject _tempObj;
             foreach(string message in messages)
@@ -86,12 +87,12 @@ namespace InventorySystem
                 GameObject _tempObj = new GameObject($"Text: {message.Substring(0, _previewTextLength)}...");
                 _tempObj.AddComponent<CanvasRenderer>();
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
-				SetAnchoredChild(_tempRectTrasform, _inventoryUI, _elementHeight, _UIWidth, new Vector2(0,0-(_elementStack+(_elementHeight/2))));
+				SetAnchoredChild(_tempRectTrasform, _PopUpUI, _elementHeight, _UIWidth, new Vector2(0,0-(_elementStack+(_elementHeight/2))));
 
 				createTMP(_tempObj, message);
             }
                
-            return _inventoryUI;
+            return _PopUpUI;
         }
 
         private static void GenerateInventoryPopUp(Inventory inventory)
