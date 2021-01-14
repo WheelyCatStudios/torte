@@ -134,8 +134,7 @@ namespace InventorySystem
                 //item icon
                 _tempRectTrasform = new GameObject("Icon").AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _elementHeight, new Vector2(_elementHeight/2,0-(_elementHeight/2)), false, Vector2.up, Vector2.up);
-                UnityEngine.UI.Image _itemImage = _tempRectTrasform.gameObject.AddComponent<UnityEngine.UI.Image>();
-                _itemImage.sprite = currentItem.Icon;
+                _tempRectTrasform.gameObject.AddComponent<UnityEngine.UI.Image>().sprite = currentItem.Icon; // Create an image, and assign it the icon of the current item.
 
 				//item text
 				GameObject _label = new GameObject("Label");
