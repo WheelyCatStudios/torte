@@ -124,10 +124,10 @@ namespace InventorySystem
 			_elementStack = 0;
 
             //Items
-            for(int i = 0; i!=inventory.InventoryItems.Count; i++)
+            foreach(InventoryItem currentItem in inventory.InventoryItems)
             {
                 //Item container
-                _tempObj = new GameObject($"Item: {inventory.InventoryItems[i].Name}");
+                _tempObj = new GameObject($"Item: {currentItem.Name}");
                 _tempRectTrasform = _tempObj.AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _scrollContainer, _elementHeight, _UIWidth, new Vector2(0, 0 - (_elementStack + (_elementHeight / 2))), false);
 
@@ -135,13 +135,13 @@ namespace InventorySystem
                 _tempRectTrasform = new GameObject("Icon").AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _elementHeight, new Vector2(_elementHeight/2,0-(_elementHeight/2)), false, Vector2.up, Vector2.up);
                 UnityEngine.UI.Image _itemImage = _tempRectTrasform.gameObject.AddComponent<UnityEngine.UI.Image>();
-                _itemImage.sprite = inventory.InventoryItems[i].Icon;
+                _itemImage.sprite = currentItem.Icon;
 
 				//item text
 				GameObject _label = new GameObject("Label");
                 _tempRectTrasform = _label.AddComponent<RectTransform>();
 				SetAnchoredChild(_tempRectTrasform, _tempObj, _elementHeight, _mainTransform.sizeDelta.x , new Vector2(_elementHeight * 3, 0-(_elementHeight/2)), false, Vector2.up, Vector2.up);
-				createTMP(_label, inventory.InventoryItems[i].Name);
+				createTMP(_label, currentItem.Name);
 
                 _elementStack += _elementHeight;
             }
