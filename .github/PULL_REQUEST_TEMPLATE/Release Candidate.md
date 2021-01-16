@@ -1,4 +1,12 @@
-<!-- 
+---
+name: Release
+about: For use when merging a sprint's deliverable
+title: 'Release the sprint x candidate '
+assignees: ''
+
+---
+
+<!--
 Release routine checklist:
  * Capture the `develop` branch as `Candidate-Release/x`. This is the candidate for release.
  * Open PR, filling appropriate details.
@@ -8,8 +16,6 @@ Release routine checklist:
  * Add to sprint milestone
  * (Shinkson will) record code stats from the candidate on the google drive.
 -->
-
-# Release the sprint x candidate
 
 Once accepted, this will be version `pre-release 0.x.0`
 <!-- 
