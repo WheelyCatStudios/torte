@@ -301,6 +301,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b629b0f1-9d61-4b45-a6c0-6c9d7416dec8"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5989c71e-d843-4dc1-8721-3f2aa13816c4"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
