@@ -29801,7 +29801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115833496}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DialogWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34665,10 +34665,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2086527444, guid: aa3284844f6c3504193465087a90e949, type: 3}
+      propertyPath: m_Size.y
+      value: 0.62756234
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086527444, guid: aa3284844f6c3504193465087a90e949, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.15378118
+      objectReference: {fileID: 0}
     - target: {fileID: 40736136920597730, guid: aa3284844f6c3504193465087a90e949,
         type: 3}
       propertyPath: m_Name
       value: Entity
+      objectReference: {fileID: 0}
+    - target: {fileID: 40736136920597730, guid: aa3284844f6c3504193465087a90e949,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 40736136920597742, guid: aa3284844f6c3504193465087a90e949,
         type: 3}
@@ -34760,19 +34773,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1932757019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec55d58124b850c47aa2a8b68e31fca0, type: 3}
+  m_Script: {fileID: 11500000, guid: e8c06356b0d8641518bf3c5343707689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAnpc: 0
-  IsAObject: 0
   InContact: 0
-  ColliderBoundsX: 0.2
-  ColliderBoundsY: 0.2
+  IsRepeatable: 1
+  ColliderBoundsX: 1
+  ColliderBoundsY: 1
   OffsetColliderBoundsX: 0
   OffsetColliderBoundsY: 0
   HavePhysicalCollider: 1
-  InteractFeedback: {fileID: 0}
-  feedbacktext: {fileID: 193443689}
+  feedbacktext: 
 --- !u!212 &1932757021
 SpriteRenderer:
   m_ObjectHideFlags: 0

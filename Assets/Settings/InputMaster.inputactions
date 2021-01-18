@@ -38,6 +38,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "SecondaryInteraction",
+                    "type": "Button",
+                    "id": "7d7e9378-c91a-4967-b043-0d5c53c2fe59",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Escape",
                     "type": "Button",
                     "id": "34d51564-f377-4ad7-bc20-a58e8af7af0c",
@@ -288,17 +296,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b629b0f1-9d61-4b45-a6c0-6c9d7416dec8",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard + Mouse",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5989c71e-d843-4dc1-8721-3f2aa13816c4",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -338,6 +335,17 @@
                     "processors": "",
                     "groups": "GamePad",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b629b0f1-9d61-4b45-a6c0-6c9d7416dec8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "SecondaryInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

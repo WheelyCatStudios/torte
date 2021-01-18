@@ -51,6 +51,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""SecondaryInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d7e9378-c91a-4967-b043-0d5c53c2fe59"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Escape"",
                     ""type"": ""Button"",
                     ""id"": ""34d51564-f377-4ad7-bc20-a58e8af7af0c"",
@@ -301,17 +309,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b629b0f1-9d61-4b45-a6c0-6c9d7416dec8"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Interaction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5989c71e-d843-4dc1-8721-3f2aa13816c4"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -351,6 +348,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b629b0f1-9d61-4b45-a6c0-6c9d7416dec8"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""SecondaryInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -393,6 +401,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_PrimaryAction = m_Player.FindAction("PrimaryAction", throwIfNotFound: true);
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+        m_Player_SecondaryInteraction = m_Player.FindAction("SecondaryInteraction", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
     }
@@ -448,6 +457,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PrimaryAction;
     private readonly InputAction m_Player_SecondaryAction;
     private readonly InputAction m_Player_Interaction;
+    private readonly InputAction m_Player_SecondaryInteraction;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Menu;
     public struct PlayerActions
@@ -458,6 +468,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @PrimaryAction => m_Wrapper.m_Player_PrimaryAction;
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
+        public InputAction @SecondaryInteraction => m_Wrapper.m_Player_SecondaryInteraction;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -481,6 +492,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
                 @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
                 @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @SecondaryInteraction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryInteraction;
+                @SecondaryInteraction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryInteraction;
+                @SecondaryInteraction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryInteraction;
                 @Escape.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @Escape.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @Escape.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
@@ -503,6 +517,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
+                @SecondaryInteraction.started += instance.OnSecondaryInteraction;
+                @SecondaryInteraction.performed += instance.OnSecondaryInteraction;
+                @SecondaryInteraction.canceled += instance.OnSecondaryInteraction;
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
@@ -537,6 +554,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnPrimaryAction(InputAction.CallbackContext context);
         void OnSecondaryAction(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
+        void OnSecondaryInteraction(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
     }
