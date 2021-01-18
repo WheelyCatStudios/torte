@@ -1,6 +1,6 @@
 ---
 name: Release
-about: For use when merging a sprint's deliverable
+about: Only for use when merging a sprint's deliverable. Please don't use this template for anything that isn't a candidate against main.
 title: 'Release the sprint x candidate '
 assignees: ''
 
