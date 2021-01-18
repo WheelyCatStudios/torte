@@ -1,6 +1,6 @@
 ---
 name: Release
-about: Only for use when merging a sprint's deliverable. Please don't use this template for anything that isn't a candidate against main.
+about: Only for use when merging a sprint's deliverable into main. Please don't use this template for anything else.
 title: 'Release the sprint x candidate '
 assignees: ''
 
@@ -42,7 +42,6 @@ This PR will remain open until Production / Client have provided thier acceptanc
  * Fixed major bug 
 
 # Card list
-*(Log of work completed)*
 <!-- Copy the items in the card, implementing 'closes' or 'closed' on the various issues. -->
 
 ## User stories
