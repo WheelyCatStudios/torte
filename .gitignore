@@ -75,3 +75,4 @@ ph.meta
 ph
 /Assets/Wwise/**/*.meta
 Assets/Wwise.meta
+.vscode/launch.json
