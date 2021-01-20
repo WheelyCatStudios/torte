@@ -58,7 +58,21 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Wwise
+torte_WwiseProject/.cache/*
+torte_WwiseProject/**/*.validationcache
+*.wsettings
+logRunSetup.txt
+Assets/WwiseSettings.xml
+Assets/WwiseSettings.xml.meta
+
+
+
+# Custom
 *.DS_Store
 .DS_Store
 ph.meta
 ph
+/Assets/Wwise/**/*.meta
+Assets/Wwise.meta
+.vscode/launch.json
