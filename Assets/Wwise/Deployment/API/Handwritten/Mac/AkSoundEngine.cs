@@ -6,7 +6,7 @@ public partial class AkSoundEngine
 
 
 
-#if UNITY_EDITOR_OSX || (UNITY_STANDALONE_OSX && !UNITY_EDITOR)
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 
 
 
