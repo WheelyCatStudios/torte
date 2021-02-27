@@ -85,7 +85,8 @@ public class BubbleController : MonoBehaviour
 	/// </summary>
 	/// <param name="_state">The bubble index to show. Check the state machine for indexes.</param>
 	public void SetState(int _state) {
-		State = _state;
+		State     = _state;
+		lastState =  State;
 		statemachine.SetInteger("State", State);
 	}
 
