@@ -39,9 +39,9 @@ public class BubbleController : MonoBehaviour
 	private int lastState;
 
 	/// <summary>
-	/// The last known state of PlayerClose. Used to detect and trigger state changes when the player moves into and out of the <a cref="distanceThreshold"/> detection range.
+	/// The last known state of PlayerInProximity. Used to detect and trigger state changes when the player moves into and out of the <a cref="distanceThreshold"/> detection range.
 	/// </summary>
-	private bool lastClose;
+	private bool lastProximity;
 
 	/// <summary>
 	/// Configures local varables on creation.
@@ -59,19 +59,19 @@ public class BubbleController : MonoBehaviour
     {
 		if (lastState != State) SetState();
 
-		lastClose = statemachine.GetBool("PlayerClose");
+		lastProximity = statemachine.GetBool("PlayerInProximity");
         distance = Vector2.Distance(transform.position, Player.transform.position);
-		setPlayerClose(distance < distanceThreshold);
+		setPlayerInProximity(distance < distanceThreshold);
     }
 
 	/// <summary>
-	/// Sets the 'PlayerClose' parameter, according to <paramref name="val"/>. If true, the state machine is permitted to open a bubble, false it should close the bubble.
+	/// Sets the 'PlayerInProximity' parameter, according to <paramref name="val"/>. If true, the state machine is permitted to open a bubble, false it should close the bubble.
 	/// </summary>
 	/// <param name="val">The value to set Player Close to.</param>
-	private void setPlayerClose(bool val) {
-		if (val == lastClose) return;
-		statemachine.SetBool("PlayerClose", val);
-		lastClose = val;
+	private void setPlayerInProximity(bool val) {
+		if (val == lastProximity) return;
+		statemachine.SetBool("PlayerInProximity", val);
+		lastProximity = val;
 	}
 
 	/// <summary>
@@ -96,9 +96,9 @@ public class BubbleController : MonoBehaviour
 	void OnDisable() => Close();
 
 	/// <summary>
-	/// Closes the bubble, by forcing PlayerClose parameter to false. <br/>
+	/// Closes the bubble, by forcing PlayerInProximity parameter to false. <br/>
 	/// If this script is still enabled, this will be overwritten on the next frame.
 	/// </summary>
-	public void Close() => statemachine.SetBool("PlayerClose", false);
+	public void Close() => statemachine.SetBool("PlayerInProximity", false);
 
 }
