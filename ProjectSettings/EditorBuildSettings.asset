@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TransitionScene.unity
     guid: 1ca116ef5d123e442bb6778aa03959a4
+  - enabled: 1
+    path: Assets/Scenes/levels/The_Lab/INT_1/The_Lab_INT_1.unity
+    guid: ea9607ca11365424882af7cb1d6a2083
+  - enabled: 1
+    path: Assets/Scenes/levels/The_Lab/The_Lab_INT_2.unity
+    guid: fc11c4a234fcc4106b658840a5a78567
   m_configObjects: {}
