@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class SceneTransition : MonoBehaviour
 {
     public string sceneName; //Required Field; Case Sensitve; Please use full path instead of name
@@ -24,10 +23,6 @@ public class SceneTransition : MonoBehaviour
     {
         departThreshold = approachThreshold * 1.5f;
         playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
-		if (playerRb == null) {
-			Debug.Log("No player was tagged in scene.");
-			base.enabled = false;
-		}
     }
 
     void LateUpdate() {
