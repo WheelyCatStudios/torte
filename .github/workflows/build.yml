@@ -1,0 +1,53 @@
+name: build 
+
+on:
+  pull_request:
+    branches:
+      - develop 
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  buildAndTestForSomePlatforms:
+    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - .
+        unityVersion:
+          - 2019.4.16f1
+        targetPlatform:
+          - StandaloneWindows64 # Build windows 64-bit standalone.
+    steps:
+    
+        # Checkout
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+          
+        # Cache
+      - uses: actions/cache@v1.1.0
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-${{ matrix.projectPath }}-
+            Library-
+
+            
+        # build
+      - name: Build project
+        uses: game-ci/unity-builder@v2.0-alpha-6
+        with:
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          allowDirtyBuild: true
+          
+          # output
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Build
+          path: build
